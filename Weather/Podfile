@@ -9,4 +9,5 @@ target 'Weather' do
 	pod 'Then'
 	pod 'IQKeyboardManagerSwift'
 	pod 'Reusable'
+	pod 'Alamofire'
 end
