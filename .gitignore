@@ -33,6 +33,9 @@ xcschememanagement.plist
 timeline.xctimeline
 playground.xcworkspace
 
+## APIKey
+Weather/Weather/Data/Source/Remote/API/Request/APIKey.swift
+
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
