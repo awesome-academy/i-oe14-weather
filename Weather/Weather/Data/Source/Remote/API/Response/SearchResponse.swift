@@ -10,7 +10,7 @@ import ObjectMapper
 
 struct SearchResponse: Mappable {
     var predictions = [Prediction]()
-    var status = Constants.blank
+    var status = ""
     
     init?(map: Map) { }
     

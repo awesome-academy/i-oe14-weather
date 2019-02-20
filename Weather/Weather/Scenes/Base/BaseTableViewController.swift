@@ -24,7 +24,6 @@ class BaseTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
-        configView()
     }
     
     func configTableView() {
@@ -33,10 +32,8 @@ class BaseTableViewController: UIViewController {
             $0.delegate = self
         }
     }
-    
-    func configView() { }
 }
-//MARK: - Extensions
+// MARK: - Extensions
 extension BaseTableViewController {
     func loadingSuccess() {
         baseTableView.do {
@@ -53,7 +50,7 @@ extension BaseTableViewController {
         }
     }
 }
-//MARK: - UITableViewDataSource + UITableViewDelegate
+// MARK: - UITableViewDataSource + UITableViewDelegate
 extension BaseTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0

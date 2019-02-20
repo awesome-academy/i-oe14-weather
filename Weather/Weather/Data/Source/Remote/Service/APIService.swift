@@ -36,7 +36,10 @@ class APIService {
                 // handle data
                 switch response.result {
                 case .success(let data):
-                    return completion(Mapper<T>().map(JSONObject: data), nil)
+                    guard let error = Mapper<ErrorResponse>().map(JSONObject: data) else {
+                        return completion(Mapper<T>().map(JSONObject: data), nil)
+                    }
+                    return completion(nil, .apiFailure(error: error))
                 case .failure(let error):
                     switch statusCode {
                     case 300...511:

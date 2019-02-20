@@ -8,24 +8,24 @@
 
 import Foundation
 
-class SearchRepository: NSObject {
+final class SearchRepository: NSObject {
     private let api = APIService.share
     
     override init() {
         super.init()
     }
     
-    func searchLocation(keyword: String, completion: @escaping (BaseResult<SearchResponse>) -> Void ) {
+    func searchLocation(keyword: String, completion: @escaping (BaseResult<SearchResponse>) -> Void) {
         let searchRequest = SearchRequest(keyword: keyword)
-        api.request(input: searchRequest) { (object: SearchResponse?, error) in
-            guard let _object = object else {
+        api.request(input: searchRequest) { (response: SearchResponse?, error) in
+            guard let response = response else {
                 return completion(.failed(error: error))
             }
-            switch _object.status {
+            switch response.status {
             case Constants.ok:
-                completion(.success(_object))
+                completion(.success(response))
             default:
-                completion(.failed(error: .googleError(_object.status)))
+                completion(.failed(error: .googleError(response.status)))
             }
         }
     }

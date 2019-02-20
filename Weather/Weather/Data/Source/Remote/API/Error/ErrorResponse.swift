@@ -11,7 +11,11 @@ import ObjectMapper
 struct ErrorResponse: Mappable {
     var weatherError = ""
 
-    init?(map: Map) { }
+    init?(map: Map) {
+        guard let _ = map.JSON["error"] else {
+            return nil
+        }
+    }
     
     mutating func mapping(map: Map) {
         weatherError <- map["error"]
