@@ -61,10 +61,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x76-n0-RsL">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Jjr-3x-uzN"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="m2N-LG-yzt"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.19215686274509802" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,8 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yLz-va-Sl8"/>
                     <connections>
-                        <outlet property="searchBar" destination="Nif-VV-NUm" id="xmm-Da-Jjx"/>
-                        <outlet property="tbvBase" destination="x76-n0-RsL" id="0qN-MH-UC7"/>
+                        <outlet property="baseTableView" destination="x76-n0-RsL" id="eIB-52-DuH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -46,7 +46,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="label_description" destination="4Na-IJ-JVA" id="gFx-YU-uyc"/>
+                <outlet property="descriptionLabel" destination="4Na-IJ-JVA" id="xNU-Ye-DdP"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="154.72263868065968"/>
         </tableViewCell>

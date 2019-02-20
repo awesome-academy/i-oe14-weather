@@ -9,14 +9,14 @@
 import UIKit
 import Reusable
 
-class SearchLocationCell: UITableViewCell, NibReusable {
-    @IBOutlet weak var label_description: UILabel?
+final class SearchLocationCell: UITableViewCell, NibReusable {
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func config(object: Prediction) {
-        self.label_description?.text = object.description
+    func setContentForCell(prediction: Prediction) {
+        descriptionLabel.text = prediction.description
     }
 }

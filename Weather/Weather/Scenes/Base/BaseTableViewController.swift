@@ -10,29 +10,46 @@ import UIKit
 import Then
 
 class BaseTableViewController: UIViewController {
-    @IBOutlet weak var tbvBase: UITableView?
-    private let labelResult = UILabel(height: 50).then {
+    @IBOutlet weak var baseTableView: UITableView!
+    
+    private struct Constant {
+        static let minHeight: CGFloat = 50
+    }
+    
+    private let resultLabel = UILabel().then {
+        $0.frame = CGRect(width: 0, height: Constant.minHeight)
         $0.textColor = .white
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configTableView()
+    }
+    
+    func configTableView() {
+        baseTableView.do {
+            $0.dataSource = self
+            $0.delegate = self
+        }
     }
 }
-
+//MARK: - Extensions
 extension BaseTableViewController {
     func loadingSuccess() {
-        self.tbvBase?.tableHeaderView = nil
-        self.tbvBase?.reloadData()
+        baseTableView.do {
+            $0.tableHeaderView = nil
+            $0.reloadData()
+        }
     }
     
     func loadingFailed(_ message: String?) {
-        labelResult.text = message
-        self.tbvBase?.tableHeaderView = labelResult
-        self.tbvBase?.reloadData()
+        resultLabel.text = message
+        baseTableView.do {
+            $0.tableHeaderView = resultLabel
+            $0.reloadData()
+        }
     }
 }
-
 //MARK: - UITableViewDataSource + UITableViewDelegate
 extension BaseTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +61,6 @@ extension BaseTableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return Constant.minHeight
     }
 }
