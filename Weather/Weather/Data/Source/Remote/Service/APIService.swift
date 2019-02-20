@@ -13,7 +13,7 @@ class APIService {
     static let share = APIService()
     
     private lazy var sessionManager: Alamofire.SessionManager = {
-        let config = URLSessionConfiguration.default
+        let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = 30
         config.timeoutIntervalForResource = 30
         config.httpAdditionalHeaders = ["Content-Type": "application/json"]
@@ -33,13 +33,10 @@ class APIService {
                 guard let statusCode = response.response?.statusCode else {
                     return completion(nil, .unexpectedError(error: response.error))
                 }
-                
+                // handle data
                 switch response.result {
                 case .success(let data):
-                    guard let error = Mapper<ErrorResponse>().map(JSONObject: data) else {
-                        return completion(Mapper<T>().map(JSONObject: data), nil)
-                    }
-                    completion(nil, .apiFailure(error: error))
+                    return completion(Mapper<T>().map(JSONObject: data), nil)
                 case .failure(let error):
                     switch statusCode {
                     case 300...511:

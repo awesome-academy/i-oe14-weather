@@ -24,6 +24,7 @@ class BaseTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
+        configView()
     }
     
     func configTableView() {
@@ -32,6 +33,8 @@ class BaseTableViewController: UIViewController {
             $0.delegate = self
         }
     }
+    
+    func configView() { }
 }
 //MARK: - Extensions
 extension BaseTableViewController {

@@ -10,10 +10,12 @@ import ObjectMapper
 
 struct SearchResponse: Mappable {
     var predictions = [Prediction]()
+    var status = Constants.blank
     
     init?(map: Map) { }
     
     mutating func mapping(map: Map) {
         predictions <- map["predictions"]
+        status <- map["status"]
     }
 }

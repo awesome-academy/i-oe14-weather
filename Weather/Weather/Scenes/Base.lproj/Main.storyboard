@@ -78,6 +78,7 @@
                     <navigationItem key="navigationItem" id="yLz-va-Sl8"/>
                     <connections>
                         <outlet property="baseTableView" destination="x76-n0-RsL" id="eIB-52-DuH"/>
+                        <outlet property="searchBar" destination="Nif-VV-NUm" id="HLQ-Tn-XBG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
