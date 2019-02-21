@@ -7,3 +7,26 @@
 //
 
 import Foundation
+
+final class SearchRepository: NSObject {
+    private let api = APIService.share
+    
+    override init() {
+        super.init()
+    }
+    
+    func searchLocation(keyword: String, completion: @escaping (BaseResult<SearchResponse>) -> Void) {
+        let searchRequest = SearchRequest(keyword: keyword)
+        api.request(input: searchRequest) { (response: SearchResponse?, error) in
+            guard let response = response else {
+                return completion(.failed(error: error))
+            }
+            switch response.status {
+            case Constants.ok:
+                completion(.success(response))
+            default:
+                completion(.failed(error: .googleError(response.status)))
+            }
+        }
+    }
+}

@@ -11,6 +11,7 @@ enum BaseError {
     case httpError(code: Int)
     case unexpectedError(error: Error?)
     case apiFailure(error: ErrorResponse)
+    case googleError(_ status: String)
     
     var errorMessage: String? {
         switch self {
@@ -22,6 +23,8 @@ enum BaseError {
             return getHttpErrorMessage(httpCode: code)
         case .unexpectedError(let error):
             return error?.localizedDescription ?? Constants.unofficialError
+        case .googleError(let status):
+            return getGoogleErrorMessage(status: status)
         }
     }
     
@@ -32,6 +35,19 @@ enum BaseError {
         case 400...499:
             return Constants.clientError // Client error
         case 500...511:
+            return Constants.serverError // Server error
+        default:
+            return Constants.unofficialError // Unofficial error
+        }
+    }
+    
+    private func getGoogleErrorMessage(status: String) -> String {
+        switch status {
+        case Constants.ok, Constants.invalidRequest:
+            return Constants.blank // Success
+        case Constants.zeroResult:
+            return Constants.noData // Client error
+        case Constants.limitQuery, Constants.requestDenied:
             return Constants.serverError // Server error
         default:
             return Constants.unofficialError // Unofficial error

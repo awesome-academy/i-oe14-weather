@@ -33,7 +33,7 @@ class BaseTableViewController: UIViewController {
         }
     }
 }
-//MARK: - Extensions
+// MARK: - Extensions
 extension BaseTableViewController {
     func loadingSuccess() {
         baseTableView.do {
@@ -50,7 +50,7 @@ extension BaseTableViewController {
         }
     }
 }
-//MARK: - UITableViewDataSource + UITableViewDelegate
+// MARK: - UITableViewDataSource + UITableViewDelegate
 extension BaseTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0

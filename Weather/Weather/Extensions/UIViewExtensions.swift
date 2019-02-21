@@ -13,3 +13,10 @@ extension UIView {
         self.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
     }
 }
+
+extension UISearchBar {
+    func setTextFieldColor(_ color: UIColor) {
+        let textField = value(forKey: "searchField") as? UITextField
+        textField?.textColor = color
+    }
+}

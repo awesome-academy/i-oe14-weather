@@ -10,7 +10,7 @@ class SearchRequest: BaseRequest {
     required init(keyword: String) {
         let parameters = ["input": keyword,
                           "types": "(regions)",
-                          "language": "en,vi",
+                          "language": "vi",
                           "key": APIKey.googleKey]
         super.init(url: URLs.placeAutoComplete, httpMethod: .get, body: parameters)
     }
