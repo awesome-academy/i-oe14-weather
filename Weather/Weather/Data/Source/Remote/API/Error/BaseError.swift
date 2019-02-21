@@ -9,7 +9,7 @@
 enum BaseError {
     case networkError
     case httpError(code: Int)
-    case unexpectedError(error: Error?)
+    case unexpectedError(_ error: Error?)
     case apiFailure(error: ErrorResponse)
     case googleError(_ status: String)
     

@@ -10,4 +10,5 @@ target 'Weather' do
 	pod 'IQKeyboardManagerSwift'
 	pod 'Reusable'
 	pod 'Alamofire'
+	pod 'MBProgressHUD', '~> 1.1.0'
 end

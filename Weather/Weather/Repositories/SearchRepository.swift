@@ -29,4 +29,19 @@ final class SearchRepository: NSObject {
             }
         }
     }
+    
+    func searchCoordinate(of placeId: String, completion: @escaping (BaseResult<CoordinateResponse>) -> Void) {
+        let coordinateRequest = CoondinateRequest(placeId: placeId)
+        api.request(input: coordinateRequest) { (response: CoordinateResponse?, error) in
+            guard let response = response else {
+                return completion(.failed(error: error))
+            }
+            switch response.status {
+            case Constants.ok:
+                completion(.success(response))
+            default:
+                completion(.failed(error: .googleError(Constants.blank)))
+            }
+        }
+    }
 }

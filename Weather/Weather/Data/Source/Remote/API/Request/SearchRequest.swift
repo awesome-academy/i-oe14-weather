@@ -6,7 +6,7 @@
 //  Copyright © 2019 minhduc. All rights reserved.
 //
 
-class SearchRequest: BaseRequest {
+final class SearchRequest: BaseRequest {
     required init(keyword: String) {
         let parameters = ["input": keyword,
                           "types": "(regions)",

@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 final class SearchLocationViewController: BaseTableViewController {
+    
     @IBOutlet private weak var searchBar: UISearchBar!
     
     private let searchRepo = SearchRepository()
@@ -50,21 +52,38 @@ extension SearchLocationViewController {
         cell.setContentForCell(prediction: predictions[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        startLoading()
+        
+        let placeId = predictions[indexPath.row].placeId
+        searchRepo.searchCoordinate(of: placeId) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                guard let _ = data else { return }
+            case .failed(let error):
+                self.showErrorMessage(message: error?.errorMessage)
+            }
+            self.stopLoading()
+        }
+    }
 }
 // MARK: - SearchBarDelegate
 extension SearchLocationViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchRepo.searchLocation(keyword: searchText.ascii) { [weak self] result in
-            guard let owner = self else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let data):
                 guard let data = data else { return }
-                owner.predictions = data.predictions
-                owner.loadingSuccess()
+                self.predictions = data.predictions
+                self.loadingSuccess()
             case .failed(let error):
-                owner.predictions.removeAll()
-                owner.loadingFailed(error?.errorMessage)
+                self.predictions.removeAll()
+                self.loadingFailed(error?.errorMessage)
             }
         }
     }
 }
+
