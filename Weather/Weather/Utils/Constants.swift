@@ -23,4 +23,5 @@ struct Constants {
     static let unknownError = "UNKNOWN_ERROR"
     static let invalidRequest = "INVALID_REQUEST"
     static let blank = ""
+    static let warning = "Warning"
 }

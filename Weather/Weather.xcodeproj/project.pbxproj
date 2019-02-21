@@ -16,6 +16,10 @@
 		2241C57C221A610C004EC5B3 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241C57B221A610C004EC5B3 /* SearchResponse.swift */; };
 		2241C57E221A6223004EC5B3 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241C57D221A6223004EC5B3 /* Prediction.swift */; };
 		2241C580221A6562004EC5B3 /* SearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241C57F221A6562004EC5B3 /* SearchRequest.swift */; };
+		2280CDA9221E3EC900F7E5DF /* CoordinateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280CDA8221E3EC900F7E5DF /* CoordinateResponse.swift */; };
+		2280CDAB221E3F2F00F7E5DF /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280CDAA221E3F2F00F7E5DF /* Coordinate.swift */; };
+		2280CDAD221E40FD00F7E5DF /* CoordinateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280CDAC221E40FD00F7E5DF /* CoordinateRequest.swift */; };
+		2280CDAF221E49F100F7E5DF /* AlertViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2280CDAE221E49F100F7E5DF /* AlertViewControllerExtension.swift */; };
 		22878D54221BAFEF00ABFCBC /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22878D53221BAFEF00ABFCBC /* SearchLocationViewController.swift */; };
 		22878D57221BB05900ABFCBC /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22878D55221BB05900ABFCBC /* SearchLocationCell.swift */; };
 		22878D58221BB05900ABFCBC /* SearchLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22878D56221BB05900ABFCBC /* SearchLocationCell.xib */; };
@@ -44,6 +48,10 @@
 		2241C57B221A610C004EC5B3 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		2241C57D221A6223004EC5B3 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		2241C57F221A6562004EC5B3 /* SearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
+		2280CDA8221E3EC900F7E5DF /* CoordinateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateResponse.swift; sourceTree = "<group>"; };
+		2280CDAA221E3F2F00F7E5DF /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		2280CDAC221E40FD00F7E5DF /* CoordinateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateRequest.swift; sourceTree = "<group>"; };
+		2280CDAE221E49F100F7E5DF /* AlertViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewControllerExtension.swift; sourceTree = "<group>"; };
 		22878D53221BAFEF00ABFCBC /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		22878D55221BB05900ABFCBC /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		22878D56221BB05900ABFCBC /* SearchLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchLocationCell.xib; sourceTree = "<group>"; };
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				2241C57D221A6223004EC5B3 /* Prediction.swift */,
+				2280CDAA221E3F2F00F7E5DF /* Coordinate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				2241C57F221A6562004EC5B3 /* SearchRequest.swift */,
+				2280CDAC221E40FD00F7E5DF /* CoordinateRequest.swift */,
 				2241C56E221A4CD4004EC5B3 /* BaseRequest.swift */,
 				2241C575221A56E6004EC5B3 /* APIKey.swift */,
 			);
@@ -138,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2241C57B221A610C004EC5B3 /* SearchResponse.swift */,
+				2280CDA8221E3EC900F7E5DF /* CoordinateResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -183,6 +194,7 @@
 				22A43BE9221C2BDC0085DD93 /* UIViewExtensions.swift */,
 				22C96F0B221D0A91008C1504 /* StringExtensions.swift */,
 				22AEF106221D2EF2005A60C0 /* CGRectExtensions.swift */,
+				2280CDAE221E49F100F7E5DF /* AlertViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -416,6 +428,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
@@ -426,6 +439,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
@@ -447,12 +461,15 @@
 				22A43BE8221C2A500085DD93 /* BaseTableViewController.swift in Sources */,
 				22878D5B221BB98E00ABFCBC /* SearchRepository.swift in Sources */,
 				2241C56F221A4CD4004EC5B3 /* BaseRequest.swift in Sources */,
+				2280CDAB221E3F2F00F7E5DF /* Coordinate.swift in Sources */,
+				2280CDA9221E3EC900F7E5DF /* CoordinateResponse.swift in Sources */,
 				2241C580221A6562004EC5B3 /* SearchRequest.swift in Sources */,
 				22A64F6C22156FC8003266BA /* AppDelegate.swift in Sources */,
 				2241C57A221A5AB5004EC5B3 /* ErrorResponse.swift in Sources */,
 				2241C57C221A610C004EC5B3 /* SearchResponse.swift in Sources */,
 				2241C578221A5711004EC5B3 /* URLs.swift in Sources */,
 				2241C57E221A6223004EC5B3 /* Prediction.swift in Sources */,
+				2280CDAF221E49F100F7E5DF /* AlertViewControllerExtension.swift in Sources */,
 				22A43BEA221C2BDC0085DD93 /* UIViewExtensions.swift in Sources */,
 				22878D57221BB05900ABFCBC /* SearchLocationCell.swift in Sources */,
 				2241C573221A4FFA004EC5B3 /* BaseResult.swift in Sources */,
@@ -460,6 +477,7 @@
 				22878D54221BAFEF00ABFCBC /* SearchLocationViewController.swift in Sources */,
 				22CF181522169A93004D20ED /* APIService.swift in Sources */,
 				22AEF107221D2EF2005A60C0 /* CGRectExtensions.swift in Sources */,
+				2280CDAD221E40FD00F7E5DF /* CoordinateRequest.swift in Sources */,
 				2241C576221A56E6004EC5B3 /* APIKey.swift in Sources */,
 				22C96F0C221D0A91008C1504 /* StringExtensions.swift in Sources */,
 			);

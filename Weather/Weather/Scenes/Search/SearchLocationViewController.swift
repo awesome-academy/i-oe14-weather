@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-final class SearchLocationViewController: BaseTableViewController {
+final class SearchLocationViewController: BaseTableViewController, AlertViewController {
+    
     @IBOutlet private weak var searchBar: UISearchBar!
     
     private let searchRepo = SearchRepository()
@@ -49,6 +51,24 @@ extension SearchLocationViewController {
         let cell: SearchLocationCell = tableView.dequeueReusableCell(for: indexPath)
         cell.setContentForCell(prediction: predictions[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let placeId = predictions[indexPath.row].placeId
+        MBProgressHUD.showAdded(to: view, animated: true)// start loading view
+        // request API
+        searchRepo.searchCoordinate(of: placeId) { [weak self] result in
+            guard let owner = self else { return }
+            MBProgressHUD.hide(for: owner.view, animated: true)// stop loading view
+            switch result {
+            case .success(let data):
+                guard let data = data,
+                    let _ = data.coordinate// using city screen later
+                else { return }
+            case .failed(let error):
+                owner.showErrorMessage(message: error?.errorMessage)
+            }
+        }
     }
 }
 // MARK: - SearchBarDelegate

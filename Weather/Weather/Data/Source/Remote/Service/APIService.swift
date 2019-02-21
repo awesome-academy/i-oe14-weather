@@ -31,7 +31,7 @@ class APIService {
             .validate(statusCode: 200..<299)
             .responseJSON { response in
                 guard let statusCode = response.response?.statusCode else {
-                    return completion(nil, .unexpectedError(error: response.error))
+                    return completion(nil, .unexpectedError(response.error))
                 }
                 // handle data
                 switch response.result {
@@ -45,7 +45,7 @@ class APIService {
                     case 300...511:
                         completion(nil, .httpError(code: statusCode))
                     default:
-                        completion(nil, .unexpectedError(error: error))
+                        completion(nil, .unexpectedError(error))
                     }
                 }//End
         }
