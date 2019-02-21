@@ -7,8 +7,8 @@
 //
 
 final class CoondinateRequest: BaseRequest {
-    init(placeid: String) {
-        let parameters = ["placeid": placeid,
+    init(placeId: String) {
+        let parameters = ["placeid": placeId,
                           "fields": "geometry",
                           "key": APIKey.googleKey]
         super.init(url: URLs.currentAutoComplete, httpMethod: .get, body: parameters)

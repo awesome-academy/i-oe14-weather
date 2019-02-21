@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-final class SearchLocationViewController: BaseTableViewController, AlertViewController {
+final class SearchLocationViewController: BaseTableViewController {
     
     @IBOutlet private weak var searchBar: UISearchBar!
     
@@ -54,20 +54,18 @@ extension SearchLocationViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        startLoading()
+        
         let placeId = predictions[indexPath.row].placeId
-        MBProgressHUD.showAdded(to: view, animated: true)// start loading view
-        // request API
         searchRepo.searchCoordinate(of: placeId) { [weak self] result in
-            guard let owner = self else { return }
-            MBProgressHUD.hide(for: owner.view, animated: true)// stop loading view
+            guard let self = self else { return }
             switch result {
             case .success(let data):
-                guard let data = data,
-                    let _ = data.coordinate// using city screen later
-                else { return }
+                guard let _ = data else { return }
             case .failed(let error):
-                owner.showErrorMessage(message: error?.errorMessage)
+                self.showErrorMessage(message: error?.errorMessage)
             }
+            self.stopLoading()
         }
     }
 }
@@ -75,16 +73,17 @@ extension SearchLocationViewController {
 extension SearchLocationViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchRepo.searchLocation(keyword: searchText.ascii) { [weak self] result in
-            guard let owner = self else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let data):
                 guard let data = data else { return }
-                owner.predictions = data.predictions
-                owner.loadingSuccess()
+                self.predictions = data.predictions
+                self.loadingSuccess()
             case .failed(let error):
-                owner.predictions.removeAll()
-                owner.loadingFailed(error?.errorMessage)
+                self.predictions.removeAll()
+                self.loadingFailed(error?.errorMessage)
             }
         }
     }
 }
+

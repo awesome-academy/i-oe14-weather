@@ -11,7 +11,7 @@ import ObjectMapper
 struct Prediction: Mappable {
     var description = ""
     var placeId = ""
-    
+
     init?(map: Map) { }
     
     mutating func mapping(map: Map) {

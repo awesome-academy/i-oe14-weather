@@ -1,5 +1,5 @@
 //
-//  AlertViewControllerExtension.swift
+//  UIViewControllerExtension.swift
 //  Weather
 //
 //  Created by minh duc on 2/21/19.
@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-protocol AlertViewController { }
-
-extension AlertViewController where Self: UIViewController {
+extension UIViewController {
     func showAlertView(title: String?, message: String?, cancelButton: String?, otherButton: String?, action: (() -> Void)?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -30,5 +29,13 @@ extension AlertViewController where Self: UIViewController {
     
     func showErrorMessage(message: String?) {
         showAlertView(title: Constants.warning, message: message, cancelButton: Constants.ok, otherButton: nil, action: nil)
+    }
+    
+    func startLoading() {
+        MBProgressHUD.showAdded(to: view, animated: true)
+    }
+    
+    func stopLoading() {
+        MBProgressHUD.hide(for: view, animated: true)
     }
 }

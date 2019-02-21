@@ -9,8 +9,10 @@
 import ObjectMapper
 
 struct Coordinate: Mappable {
-    var lat = 0.0
-    var lng = 0.0
+    var lat: Double = 0.0
+    var lng: Double = 0.0
+    
+    init() { }
     
     init?(map: Map) { }
     

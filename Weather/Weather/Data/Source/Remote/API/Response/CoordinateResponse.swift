@@ -10,14 +10,14 @@ import ObjectMapper
 
 struct CoordinateResponse: Mappable {
     var status = ""
-    var error_message = ""
-    var coordinate: Coordinate?
+    var errorMessage = ""
+    var coordinate = Coordinate()
     
     init?(map: Map) { }
     
     mutating func mapping(map: Map) {
         status <- map["status"]
-        error_message <- map["error_message"]
+        errorMessage <- map["error_message"]
         coordinate <- map["result.geometry"]
     }
 }

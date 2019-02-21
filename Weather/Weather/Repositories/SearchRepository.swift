@@ -30,8 +30,8 @@ final class SearchRepository: NSObject {
         }
     }
     
-    func searchCoordinate(of placeid : String, completion: @escaping (BaseResult<CoordinateResponse>) -> Void) {
-        let coordinateRequest = CoondinateRequest(placeid: placeid)
+    func searchCoordinate(of placeId: String, completion: @escaping (BaseResult<CoordinateResponse>) -> Void) {
+        let coordinateRequest = CoondinateRequest(placeId: placeId)
         api.request(input: coordinateRequest) { (response: CoordinateResponse?, error) in
             guard let response = response else {
                 return completion(.failed(error: error))
