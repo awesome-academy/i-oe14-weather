@@ -10,18 +10,21 @@ import Foundation
 import CoreData
 
 final class LocalData: NSObject {
-    static let share = LocalData()
+    private struct Constant {
+        static let weather = "Weather"
+        static let entity = "Location"
+    }
     
     override init() {
         super.init()
     }
-    
-    private let persistentContainer = NSPersistentContainer(name: "Weather").then {
-        $0.loadPersistentStores(completionHandler: { (_, error) in
+
+    private let persistentContainer = NSPersistentContainer(name: Constant.weather).then {
+        $0.loadPersistentStores { (_, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
-        })
+        }
     }
     
     private lazy var context = persistentContainer.viewContext
@@ -36,8 +39,8 @@ final class LocalData: NSObject {
         }
     }
     
-    func update(with location: Location) {
-        fetch().forEach {
+    func update(data location: Location) {
+        fetch(LocationCoreData.self).forEach {
             // update location with current place id
             if $0.placeId == location.placeId {
                 $0.do {
@@ -60,14 +63,17 @@ final class LocalData: NSObject {
     }
     
     @discardableResult
-    func fetch() -> [LocationCoreData] {
-        let fetchRequest = NSFetchRequest<LocationCoreData>(entityName: "Location")
+    func fetch<T: NSManagedObject>(_ type: T.Type) -> [T] {
         do {
-            let location = try context.fetch(fetchRequest)
-            return location
+            guard
+                let datas = try context.fetch(T.fetchRequest()) as? [T]
+            else {
+                return [T]()
+            }
+            return datas
         } catch let error {
             print(error.localizedDescription)
         }
-        return [LocationCoreData]()
+        return [T]()
     }
 }

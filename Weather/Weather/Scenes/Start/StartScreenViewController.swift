@@ -13,10 +13,14 @@ final class StartScreenViewController: UIViewController {
     @IBOutlet private weak var locationView: UIView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    private struct Constant {
+        static let distance: CLLocationDistance = 5
+        static let placeId = "placeId"
+    }
     private let startRepos = StartRepository()
     private let locationManager = CLLocationManager().then {
         $0.desiredAccuracy = kCLLocationAccuracyKilometer
-        $0.distanceFilter = 5  // In kilometer.
+        $0.distanceFilter = Constant.distance  // In kilometer.
     }
     
     override func viewDidLoad() {
@@ -31,14 +35,16 @@ final class StartScreenViewController: UIViewController {
     
     private func updateData(with location: Location?) {
         configLocationView(false)
-        guard let location = location else {
-            return
-        }
+        guard let location = location else { return }
         DataManager.share.updateCoreData(with: location)
     }
     
-    @IBAction private func locationServiceEnable(_ sender: UIButton) {
+    @IBAction private func locationServiceTap(_ sender: UIButton) {
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+    @IBAction private func skipTap(_ sender: UIButton) {
+        configLocationView(false)
     }
 }
 
@@ -63,7 +69,7 @@ extension StartScreenViewController: CLLocationManagerDelegate {
             return locationManager.stopUpdatingLocation()
         }
         let coordinate = Coordinate(lat: latitude, lng: longitude)
-        let location = Location(placeId: "placeId", coordinate: coordinate)
+        let location = Location(placeId: Constant.placeId, coordinate: coordinate)
         // Save in core data
         updateData(with: location)
         locationManager.stopUpdatingLocation()

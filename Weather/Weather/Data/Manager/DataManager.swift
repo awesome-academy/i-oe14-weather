@@ -12,11 +12,11 @@ final class DataManager: NSObject {
     static let share = DataManager()
     private let localData = LocalData()
     
-    override init() {
+    override private init() {
         super.init()
     }
     
-    func updateCoreData(with request: Location) {
-        localData.update(with: request)
+    func updateCoreData(with location: Location) {
+        localData.update(data: location)
     }
 }

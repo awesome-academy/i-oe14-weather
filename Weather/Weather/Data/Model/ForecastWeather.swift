@@ -9,16 +9,16 @@
 import ObjectMapper
 
 final class ForecastWeather: Mappable {
-    var rh = 0
+    var humidity = 0
     var clouds = 0
     var uv: Double = 0
-    var vis: Double = 0
-    var temp: Double = 0
-    var pres: Double = 0
-    var winspeed: Double = 0
+    var visibility: Double = 0
+    var temperature: Double = 0
+    var pressure: Double = 0
+    var windspeed: Double = 0
     var sunset = ""
     var sunrise = ""
-    var city = ""
+    var cityName = ""
     var weather = CurrentWeather()
     
     init() { }
@@ -26,16 +26,16 @@ final class ForecastWeather: Mappable {
     init?(map: Map) { }
     
     func mapping(map: Map) {
-        rh <- map["rh"]
+        humidity <- map["rh"]
         clouds <- map["clouds"]
         uv <- map["uv"]
-        vis <- map["vis"]
-        temp <- map["temp"]
-        pres <- map["pres"]
-        winspeed <- map["wind_spd"]
+        visibility <- map["vis"]
+        temperature <- map["temperature"]
+        pressure <- map["pres"]
+        windspeed <- map["wind_spd"]
         sunset <- map["sunset"]
         sunrise <- map["sunrise"]
-        city <- map["city_name"]
+        cityName <- map["city_name"]
         weather <- map["weather"]
     }
 }

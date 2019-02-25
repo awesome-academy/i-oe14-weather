@@ -7,11 +7,11 @@
 //
 
 struct URLs {
-    private static let hostGoogle = "https://maps.googleapis.com"
-    private static let hostAPI = "https://api.weatherbit.io"
-    static let placeAutoComplete = hostGoogle + "/maps/api/place/autocomplete/json"
-    static let currentAutoComplete = hostGoogle + "/maps/api/place/details/json"
-    static let currentWeather = hostAPI + "/v2.0/current"
-    static let forecastDaily = hostAPI + "/v2.0/forecast/daily"
-    static let forecastHourly = hostAPI + "/v2.0/forecast/hourly"
+    private static let hostGoogle = "https://maps.googleapis.com/maps/api/place"
+    private static let hostAPI = "https://api.weatherbit.io/v2.0"
+    static let placeAutoComplete = hostGoogle + "/autocomplete/json"
+    static let currentAutoComplete = hostGoogle + "/details/json"
+    static let currentWeather = hostAPI + "/current"
+    static let forecastDaily = hostAPI + "/forecast/daily"
+    static let forecastHourly = hostAPI + "/forecast/hourly"
 }

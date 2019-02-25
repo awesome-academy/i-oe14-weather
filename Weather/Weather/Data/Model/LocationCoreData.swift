@@ -13,4 +13,8 @@ final class LocationCoreData: NSManagedObject {
     @NSManaged var latitude: Double
     @NSManaged var longitude: Double
     @NSManaged var placeId: String
+    
+    @nonobjc func fetchRequest() -> NSFetchRequest<LocationCoreData> {
+        return NSFetchRequest<LocationCoreData>(entityName: "Location")
+    }
 }
