@@ -8,31 +8,72 @@
 
 import UIKit
 import CoreLocation
-import Then
 
 final class StartScreenViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet private weak var locationView: UIView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    
+    private let startRepos = StartRepository()
+    private let locationManager = CLLocationManager().then {
+        $0.desiredAccuracy = kCLLocationAccuracyKilometer
+        $0.distanceFilter = 5  // In kilometer.
     }
     
-    @IBAction private func locationServicesEnable(_ sender: UIButton) {
-        // allow access location services
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        locationManager.delegate = self
+    }
+    
+    private func configLocationView(_ isHidden: Bool) {
+        locationView.isHidden = !isHidden
+        activityIndicator.isHidden = isHidden
+    }
+    
+    private func updateData(with location: Location?) {
+        configLocationView(false)
+        guard let location = location else {
+            return
+        }
+        DataManager.share.updateCoreData(with: location)
+    }
+    
+    @IBAction private func locationServiceEnable(_ sender: UIButton) {
+        locationManager.requestWhenInUseAuthorization()
     }
 }
-// Mark: - CLLocationManagerDelegate
+
+// MARK: - CLLocationManagerDelegate
 extension StartScreenViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied:
-            break
+            updateData(with: nil)
         case .authorizedWhenInUse:
-            break
+            startReceivingLocationChanges()
         case .notDetermined, .authorizedAlways:
-            break
+            configLocationView(true)
         }
     }
     
-    func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
-        // update last location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard
+            let latitude = locations.last?.coordinate.latitude,
+            let longitude = locations.last?.coordinate.longitude
+        else {
+            return locationManager.stopUpdatingLocation()
+        }
+        let coordinate = Coordinate(lat: latitude, lng: longitude)
+        let location = Location(placeId: "placeId", coordinate: coordinate)
+        // Save in core data
+        updateData(with: location)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    private func startReceivingLocationChanges() {
+        configLocationView(false)
+        if !CLLocationManager.locationServicesEnabled() {
+            return updateData(with: nil) // Location services is not available.
+        }
+        locationManager.startUpdatingLocation()
     }
 }

@@ -12,6 +12,6 @@ struct URLs {
     static let placeAutoComplete = hostGoogle + "/maps/api/place/autocomplete/json"
     static let currentAutoComplete = hostGoogle + "/maps/api/place/details/json"
     static let currentWeather = hostAPI + "/v2.0/current"
-    static let forecastDaily = hostAPI + "/forecast/daily"
-    static let forecastHourly = hostAPI + "/forecast/hourly"
+    static let forecastDaily = hostAPI + "/v2.0/forecast/daily"
+    static let forecastHourly = hostAPI + "/v2.0/forecast/hourly"
 }
