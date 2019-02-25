@@ -137,7 +137,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="locationServicesEnable:" destination="nfh-58-dAN" eventType="touchUpInside" id="MXZ-Wn-2Xj"/>
+                                            <action selector="locationServiceTap:" destination="nfh-58-dAN" eventType="touchUpInside" id="XTM-4g-Hf0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-Bs-rux">
@@ -146,6 +146,9 @@
                                         <state key="normal" title="Skip">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="skipTap:" destination="nfh-58-dAN" eventType="touchUpInside" id="42J-8T-m9f"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -188,6 +191,10 @@
                         <viewLayoutGuide key="safeArea" id="3Ku-gC-X0y"/>
                     </view>
                     <navigationItem key="navigationItem" id="KzR-DV-Yj0"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="IC9-eH-Jno" id="ndz-yo-XaL"/>
+                        <outlet property="locationView" destination="DuX-Xp-I4g" id="ATx-Xb-pAV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqd-WI-WF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

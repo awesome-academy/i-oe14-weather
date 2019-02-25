@@ -9,10 +9,15 @@
 import ObjectMapper
 
 struct Coordinate: Mappable {
-    var lat: Double = 0.0
-    var lng: Double = 0.0
+    var lat: Double = 0
+    var lng: Double = 0
     
     init() { }
+    
+    init(lat: Double, lng: Double) {
+        self.lat = lat
+        self.lng = lng
+    }
     
     init?(map: Map) { }
     
