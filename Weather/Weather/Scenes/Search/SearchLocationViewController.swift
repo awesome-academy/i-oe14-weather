@@ -8,9 +8,9 @@
 
 import UIKit
 import MBProgressHUD
+import Reusable
 
 final class SearchLocationViewController: BaseTableViewController {
-    
     @IBOutlet private weak var searchBar: UISearchBar!
     
     private let searchRepo = SearchRepository()
@@ -41,6 +41,7 @@ final class SearchLocationViewController: BaseTableViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
 // MARK: - Override
 extension SearchLocationViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,6 +70,7 @@ extension SearchLocationViewController {
         }
     }
 }
+
 // MARK: - SearchBarDelegate
 extension SearchLocationViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -87,3 +89,7 @@ extension SearchLocationViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - SearchBarDelegate
+extension SearchLocationViewController: StoryboardSceneBased {
+    static let sceneStoryboard = Storyboard.main
+}
