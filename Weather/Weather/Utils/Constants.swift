@@ -24,4 +24,7 @@ struct Constants {
     static let invalidRequest = "INVALID_REQUEST"
     static let blank = ""
     static let warning = "Warning"
+    static let widthScreen = UIScreen.main.bounds.width
+    static let heightScreen = UIScreen.main.bounds.height
+    static let nameStoryboard = "Main"
 }

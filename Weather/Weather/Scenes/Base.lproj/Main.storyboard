@@ -13,7 +13,7 @@
         <!--Search Location View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SearchLocationViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchLocationViewController" id="BYZ-38-t0r" customClass="SearchLocationViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,7 +137,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="locationServiceTap:" destination="nfh-58-dAN" eventType="touchUpInside" id="XTM-4g-Hf0"/>
+                                            <action selector="locationButtonTapped:" destination="nfh-58-dAN" eventType="touchUpInside" id="9mR-wY-Iro"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-Bs-rux">
@@ -147,7 +147,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="skipTap:" destination="nfh-58-dAN" eventType="touchUpInside" id="42J-8T-m9f"/>
+                                            <action selector="skipButtonTapped:" destination="nfh-58-dAN" eventType="touchUpInside" id="oFt-qO-y5e"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -200,6 +200,76 @@
             </objects>
             <point key="canvasLocation" x="886" y="134"/>
         </scene>
+        <!--List City Weather View Controller-->
+        <scene sceneID="wMH-ac-5we">
+            <objects>
+                <viewController storyboardIdentifier="ListCityWeatherViewController" id="aXe-Ur-vM1" customClass="ListCityWeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y4f-mN-RJI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3l-hg-5cg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Managerment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5x-wh-dxK">
+                                        <rect key="frame" x="105" y="13.5" width="165" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="l5x-wh-dxK" firstAttribute="centerX" secondItem="c3l-hg-5cg" secondAttribute="centerX" id="SAg-tH-TcO"/>
+                                    <constraint firstAttribute="height" constant="50" id="qf9-aG-zMz"/>
+                                    <constraint firstItem="l5x-wh-dxK" firstAttribute="centerY" secondItem="c3l-hg-5cg" secondAttribute="centerY" id="xLW-Fl-DEI"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RgE-2d-fYt">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="68P-Fj-3Ea">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U23-GZ-clH">
+                                <rect key="frame" x="157.5" y="577" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="1ct-Uf-4qC"/>
+                                    <constraint firstAttribute="height" constant="60" id="UbJ-cZ-Mhe"/>
+                                </constraints>
+                                <state key="normal" image="add-button"/>
+                                <connections>
+                                    <action selector="addItemButtonTapped:" destination="aXe-Ur-vM1" eventType="touchUpInside" id="AGt-Pr-NYn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14509803921568626" green="0.19215686274509802" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RgE-2d-fYt" firstAttribute="top" secondItem="c3l-hg-5cg" secondAttribute="bottom" id="FTI-wV-lf3"/>
+                            <constraint firstItem="c3l-hg-5cg" firstAttribute="trailing" secondItem="C2z-yt-4cB" secondAttribute="trailing" id="Sth-HK-Mdc"/>
+                            <constraint firstItem="C2z-yt-4cB" firstAttribute="bottom" secondItem="RgE-2d-fYt" secondAttribute="bottom" id="Szx-jP-SiF"/>
+                            <constraint firstItem="U23-GZ-clH" firstAttribute="centerX" secondItem="C2z-yt-4cB" secondAttribute="centerX" id="WRv-OQ-FLS"/>
+                            <constraint firstItem="c3l-hg-5cg" firstAttribute="top" secondItem="C2z-yt-4cB" secondAttribute="top" id="cAM-OJ-rIk"/>
+                            <constraint firstItem="c3l-hg-5cg" firstAttribute="leading" secondItem="C2z-yt-4cB" secondAttribute="leading" id="hRp-kw-CZ7"/>
+                            <constraint firstItem="C2z-yt-4cB" firstAttribute="trailing" secondItem="RgE-2d-fYt" secondAttribute="trailing" id="rTr-Q0-V3S"/>
+                            <constraint firstItem="RgE-2d-fYt" firstAttribute="leading" secondItem="C2z-yt-4cB" secondAttribute="leading" id="som-WF-ae8"/>
+                            <constraint firstItem="C2z-yt-4cB" firstAttribute="bottom" secondItem="U23-GZ-clH" secondAttribute="bottom" constant="30" id="yKn-RT-nhN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C2z-yt-4cB"/>
+                    </view>
+                    <connections>
+                        <outlet property="listCityCollectionView" destination="RgE-2d-fYt" id="zDY-ic-Ze0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ApH-pK-qj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925.5999999999999" y="133.5832083958021"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MZ8-3V-i19">
             <objects>
@@ -219,6 +289,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add-button" width="57" height="57"/>
         <image name="background-startscreen" width="750" height="1334"/>
         <image name="button-startscreen" width="445" height="80"/>
         <image name="icon-startscreen" width="192" height="241"/>

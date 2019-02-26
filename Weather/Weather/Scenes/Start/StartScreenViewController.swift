@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Reusable
 
 final class StartScreenViewController: UIViewController {
     @IBOutlet private weak var locationView: UIView!
@@ -39,11 +40,18 @@ final class StartScreenViewController: UIViewController {
         DataManager.share.updateCoreData(with: location)
     }
     
-    @IBAction private func locationServiceTap(_ sender: UIButton) {
+    private func pushListCityController() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            let cityController = ListCityWeatherViewController.instantiate()
+            self.navigationController?.pushViewController(cityController, animated: true)
+        }
+    }
+    
+    @IBAction private func locationButtonTapped(_ sender: UIButton) {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    @IBAction private func skipTap(_ sender: UIButton) {
+    @IBAction private func skipButtonTapped(_ sender: UIButton) {
         configLocationView(false)
     }
 }
@@ -59,6 +67,7 @@ extension StartScreenViewController: CLLocationManagerDelegate {
         case .notDetermined, .authorizedAlways:
             configLocationView(true)
         }
+        pushListCityController()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
