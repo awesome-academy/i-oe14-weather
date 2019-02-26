@@ -14,11 +14,13 @@ final class StartScreenViewController: UIViewController {
     @IBOutlet private weak var locationView: UIView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    private let dataManager = DataManager.share
+    
     private struct Constant {
         static let distance: CLLocationDistance = 5
         static let placeId = "placeId"
     }
-    private let startRepos = StartRepository()
+
     private let locationManager = CLLocationManager().then {
         $0.desiredAccuracy = kCLLocationAccuracyKilometer
         $0.distanceFilter = Constant.distance  // In kilometer.
@@ -37,14 +39,7 @@ final class StartScreenViewController: UIViewController {
     private func updateData(with location: Location?) {
         configLocationView(false)
         guard let location = location else { return }
-        DataManager.share.updateCoreData(with: location)
-    }
-    
-    private func pushListCityController() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            let cityController = ListCityWeatherViewController.instantiate()
-            self.navigationController?.pushViewController(cityController, animated: true)
-        }
+        dataManager.updateCoreData(with: location)
     }
     
     @IBAction private func handleLocationButton(_ sender: UIButton) {
@@ -53,6 +48,13 @@ final class StartScreenViewController: UIViewController {
     
     @IBAction private func handleSkipButton(_ sender: UIButton) {
         configLocationView(false)
+    }
+    
+    private func pushViewController() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let cityController = ListCityWeatherViewController.instantiate()
+            self.navigationController?.pushViewController(cityController, animated: true)
+        }
     }
 }
 
@@ -67,7 +69,7 @@ extension StartScreenViewController: CLLocationManagerDelegate {
         case .notDetermined, .authorizedAlways:
             configLocationView(true)
         }
-        pushListCityController()
+        pushViewController()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -79,9 +81,9 @@ extension StartScreenViewController: CLLocationManagerDelegate {
         }
         let coordinate = Coordinate(lat: latitude, lng: longitude)
         let location = Location(placeId: Constant.placeId, coordinate: coordinate)
-        // Save in core data
-        updateData(with: location)
+        
         locationManager.stopUpdatingLocation()
+        updateData(with: location) // Save in core data
     }
     
     private func startReceivingLocationChanges() {
