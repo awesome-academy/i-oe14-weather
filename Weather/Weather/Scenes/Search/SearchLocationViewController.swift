@@ -10,10 +10,9 @@ import UIKit
 import MBProgressHUD
 import Reusable
 
-final class SearchLocationViewController: BaseTableViewController, StoryboardSceneBased {
+final class SearchLocationViewController: BaseTableViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     
-    static let sceneStoryboard = UIStoryboard(name: Constants.nameStoryboard, bundle: nil)
     private let searchRepo = SearchRepository()
     private var predictions = [Prediction]()
     
@@ -88,4 +87,9 @@ extension SearchLocationViewController: UISearchBarDelegate {
             }
         }
     }
+}
+
+// MARK: - SearchBarDelegate
+extension SearchLocationViewController: StoryboardSceneBased {
+    static let sceneStoryboard = Storyboard.main
 }

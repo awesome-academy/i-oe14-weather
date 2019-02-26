@@ -12,6 +12,17 @@ extension UIView {
     convenience init(width: CGFloat, height: CGFloat) {
         self.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
     }
+    
+    func scaleCornerRadius(_ ratio: CGFloat) {
+        layer.cornerRadius = ratio * bounds.width
+    }
+    
+    func dropShadow(_ color: UIColor, offSet: CGSize, opacity: Float = 0, radius: CGFloat = 0) {
+        layer.shadowColor = color.cgColor
+        layer.shadowOffset = offSet
+        layer.shadowOpacity = opacity
+        layer.shadowRadius = radius
+    }
 }
 
 extension UISearchBar {

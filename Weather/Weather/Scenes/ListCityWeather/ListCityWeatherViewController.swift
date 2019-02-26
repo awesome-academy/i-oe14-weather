@@ -9,14 +9,8 @@
 import UIKit
 import Reusable
 
-final class ListCityWeatherViewController: UIViewController, StoryboardSceneBased {
+final class ListCityWeatherViewController: UIViewController {
     @IBOutlet private weak var listCityCollectionView: UICollectionView!
-    
-    private struct Constant {
-        static let itemSize = CGSize(width: Constants.widthScreen/2, height: Constants.widthScreen/2)
-    }
-    
-    static let sceneStoryboard = UIStoryboard(name: Constants.nameStoryboard, bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +25,7 @@ final class ListCityWeatherViewController: UIViewController, StoryboardSceneBase
         }
     }
     
-    @IBAction private func addItemButtonTapped(_ sender: UIButton) {
+    @IBAction private func handleAddButton(_ sender: UIButton) {
         let searchController = SearchLocationViewController.instantiate()
         present(searchController, animated: true, completion: nil)
     }
@@ -53,5 +47,17 @@ extension ListCityWeatherViewController: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+}
+
+// MARK: - StoryboardSceneBased
+extension ListCityWeatherViewController: StoryboardSceneBased {
+    static let sceneStoryboard = Storyboard.main
+}
+
+// MARK: - ListCityWeatherViewController
+extension ListCityWeatherViewController {
+    private struct Constant {
+        static let itemSize = CGSize(width: Screen.width / 2, height: Screen.width / 2)
     }
 }

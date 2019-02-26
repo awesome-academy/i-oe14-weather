@@ -33,13 +33,5 @@ extension UIColor {
     static let thunder = UIColor(hex: 0x9072EE)
     static let wind = UIColor(hex: 0xFEDE82)
     static let cloudy = UIColor(hex: 0x7689D6)
-}
-
-extension CGColor {
-    static let sunny = UIColor.sunny.cgColor
-    static let snow = UIColor.snow.cgColor
-    static let rain = UIColor.rain.cgColor
-    static let thunder = UIColor.thunder.cgColor
-    static let wind = UIColor.wind.cgColor
-    static let cloudy = UIColor.cloudy.cgColor
+    static let other = UIColor(hex: 0x9BEE52)
 }

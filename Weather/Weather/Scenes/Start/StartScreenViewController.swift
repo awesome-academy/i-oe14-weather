@@ -47,11 +47,11 @@ final class StartScreenViewController: UIViewController {
         }
     }
     
-    @IBAction private func locationButtonTapped(_ sender: UIButton) {
+    @IBAction private func handleLocationButton(_ sender: UIButton) {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    @IBAction private func skipButtonTapped(_ sender: UIButton) {
+    @IBAction private func handleSkipButton(_ sender: UIButton) {
         configLocationView(false)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Colors.swift
+//  WeatherColor.swift
 //  Weather
 //
 //  Created by minh duc on 2/25/19.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-enum Colors {
-    case sunny, snow, thunder, wind, rain, cloudy
+enum WeatherColor {
+    case sunny, snow, thunder, wind, rain, cloudy, other
     
     init(code: Int) {
         switch code {
@@ -23,8 +23,10 @@ enum Colors {
             self = .sunny
         case 700...751:
             self = .cloudy
-        default:
+        case 611, 612:
             self = .wind
+        default:
+            self = .other
         }
     }
     
@@ -42,6 +44,8 @@ enum Colors {
             return UIColor.rain
         case .cloudy:
             return UIColor.cloudy
+        default:
+            return UIColor.other
         }
     }
 }

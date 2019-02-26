@@ -137,7 +137,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="locationButtonTapped:" destination="nfh-58-dAN" eventType="touchUpInside" id="9mR-wY-Iro"/>
+                                            <action selector="handleLocationButton:" destination="nfh-58-dAN" eventType="touchUpInside" id="7M0-qF-rHc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-Bs-rux">
@@ -147,7 +147,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="skipButtonTapped:" destination="nfh-58-dAN" eventType="touchUpInside" id="oFt-qO-y5e"/>
+                                            <action selector="handleSkipButton:" destination="nfh-58-dAN" eventType="touchUpInside" id="ysm-WG-8WH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -244,7 +244,7 @@
                                 </constraints>
                                 <state key="normal" image="add-button"/>
                                 <connections>
-                                    <action selector="addItemButtonTapped:" destination="aXe-Ur-vM1" eventType="touchUpInside" id="AGt-Pr-NYn"/>
+                                    <action selector="handleAddButton:" destination="aXe-Ur-vM1" eventType="touchUpInside" id="2Y6-L3-gHM"/>
                                 </connections>
                             </button>
                         </subviews>

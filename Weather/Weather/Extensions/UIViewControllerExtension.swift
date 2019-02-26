@@ -9,26 +9,35 @@
 import UIKit
 import MBProgressHUD
 
-extension UIViewController {
-    func showAlertView(title: String?, message: String?, cancelButton: String?, otherButton: String?, action: (() -> Void)?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+extension UIViewController {    
+    func showAlertView(title: String?, message: String?, cancelButton: String?, otherButtons: [String]? = nil,
+                       type: UIAlertController.Style = .alert, cancelAction: (() -> Void)? = nil,
+                       otherAction: ((Int) -> Void)? = nil) {
+        let alertViewController = UIAlertController(title: title ,
+                                                    message: message,
+                                                    preferredStyle: type)
         
-        if let cancelTitle = cancelButton {
-            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
+        if let cancelButton = cancelButton {
+            let cancelAction = UIAlertAction(title: cancelButton, style: .cancel, handler: { (_) in
+                cancelAction?()
+            })
+            alertViewController.addAction(cancelAction)
         }
         
-        if let otherTitle = otherButton {
-            let otherAction = UIAlertAction(title: otherTitle, style: .default) { _ in
-                action?()
+        if let otherButtons = otherButtons {
+            for (index, otherButton) in otherButtons.enumerated() {
+                let otherAction = UIAlertAction(title: otherButton,
+                                                style: .default, handler: { (_) in
+                                                    otherAction?(index)
+                })
+                alertViewController.addAction(otherAction)
             }
-            alertController.addAction(otherAction)
         }
-        present(alertController, animated: true, completion: nil)
+        present(alertViewController, animated: true, completion: nil)
     }
     
     func showErrorMessage(message: String?) {
-        showAlertView(title: Constants.warning, message: message, cancelButton: Constants.ok, otherButton: nil, action: nil)
+        showAlertView(title: Constants.warning, message: message, cancelButton: Constants.ok, type: .alert)
     }
     
     func startLoading() {
