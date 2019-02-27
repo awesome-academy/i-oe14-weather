@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+final class WeatherData: NSObject {
+    var dailyWeather = ForecastWeather()
+    var hourlyWeather = [ForecastWeather]()
+    var forecastdayWeather = [ForecastWeather]()
+    
+    override init() {
+        super.init()
+    }
+}

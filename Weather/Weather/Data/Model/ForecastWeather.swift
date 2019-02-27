@@ -30,7 +30,7 @@ final class ForecastWeather: Mappable {
         clouds <- map["clouds"]
         uv <- map["uv"]
         visibility <- map["vis"]
-        temperature <- map["temperature"]
+        temperature <- map["temp"]
         pressure <- map["pres"]
         windspeed <- map["wind_spd"]
         sunset <- map["sunset"]

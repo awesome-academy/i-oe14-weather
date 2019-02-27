@@ -12,12 +12,30 @@ import Reusable
 final class ListCityWeatherViewController: UIViewController {
     @IBOutlet private weak var listCityCollectionView: UICollectionView!
     
+    private var weatherDatas = [WeatherData]()
+    private let dataManager = DataManager.share
+    private let listCityRepos = ListCityRepository()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configCollectionView()
+        initData()
+        configureUICollectionView()
     }
     
-    private func configCollectionView() {
+    private func initData() {
+        let locations = dataManager.getLocations()
+        weatherDatas = [WeatherData](repeating: WeatherData(), count: locations.count)
+ 
+        listCityRepos.fetchData(weatherDatas: weatherDatas) { [weak self] indexPath in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.listCityCollectionView.reloadItems(at: [indexPath])
+            }
+        }
+    }
+    
+    private func configureUICollectionView() {
         listCityCollectionView.do {
             $0.delegate = self
             $0.dataSource = self
@@ -34,11 +52,13 @@ final class ListCityWeatherViewController: UIViewController {
 // MARK: - CollectionViewDataSource + DelegateFlowLayout
 extension ListCityWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return weatherDatas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ListCityWeatherCell.self)
+        let weatherData = weatherDatas[indexPath.row].dailyWeather
+        cell.setContentCell(with: weatherData)
         return cell
     }
     
