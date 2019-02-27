@@ -25,9 +25,10 @@ final class ListCityWeatherViewController: UIViewController {
     private func initData() {
         let locations = dataManager.getLocations()
         weatherDatas = [WeatherData](repeating: WeatherData(), count: locations.count)
-        
-        listCityRepos.fetchData(weatherDatas: &weatherDatas) { [weak self] indexPath in
+ 
+        listCityRepos.fetchData(weatherDatas: weatherDatas) { [weak self] indexPath in
             guard let self = self else { return }
+            
             DispatchQueue.main.async {
                 self.listCityCollectionView.reloadItems(at: [indexPath])
             }

@@ -20,7 +20,7 @@ final class ListCityRepository: NSObject {
         super.init()
     }
     
-    func fetchData(weatherDatas: inout [WeatherData], completion: @escaping((IndexPath) -> Void)) {
+    func fetchData(weatherDatas: [WeatherData], completion: @escaping((IndexPath) -> Void)) {
         let locations = dataManager.getLocations()
         
         for i in 0..<weatherDatas.count {
