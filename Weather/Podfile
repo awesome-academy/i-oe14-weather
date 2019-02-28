@@ -11,4 +11,5 @@ target 'Weather' do
 	pod 'Reusable'
 	pod 'Alamofire'
 	pod 'MBProgressHUD', '~> 1.1.0'
+	pod 'ShadowView'
 end
