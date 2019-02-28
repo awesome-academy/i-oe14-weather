@@ -28,8 +28,9 @@ final class ListCityWeatherViewController: UIViewController {
     }
     
     private func initData() {        
-        listCityRepos.fetchData(locations: dataManager.getLocations()) { weatherData in
+        listCityRepos.fetchData(locations: dataManager.getLocations()) { [weak self] weatherData in
             DispatchQueue.main.async {
+                guard let self = self else { return }
                 if !weatherData.hasData { return }
                 self.weatherDatas.append(weatherData)
                 self.listCityCollectionView.reloadData()
@@ -42,6 +43,14 @@ final class ListCityWeatherViewController: UIViewController {
                                                selector: #selector(deleteItemAtIndexPath),
                                                name: .deleteItemAtIndexPath,
                                                object: nil)
+    }
+    
+    private func configureUICollectionView() {
+        listCityCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(cellType: ListCityWeatherCell.self)
+        }
     }
     
     @objc private func deleteItemAtIndexPath(_ notification: Notification) {
@@ -65,14 +74,6 @@ final class ListCityWeatherViewController: UIViewController {
             self.weatherDatas.remove(at: indexPath.row)
             self.dataManager.deleteCoreData(with: location)
             self.listCityCollectionView.reloadData()
-        }
-    }
-    
-    private func configureUICollectionView() {
-        listCityCollectionView.do {
-            $0.delegate = self
-            $0.dataSource = self
-            $0.register(cellType: ListCityWeatherCell.self)
         }
     }
     
@@ -102,7 +103,9 @@ extension ListCityWeatherViewController: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        pushViewController()
+        if presentedViewController == nil {
+            pushViewController()
+        }
     }
 }
 
@@ -114,7 +117,8 @@ extension ListCityWeatherViewController: StoryboardSceneBased {
 // MARK: - ListCityDelegate
 extension ListCityWeatherViewController: ListCityDelegate {
     func updateData(at location: Location) {
-        listCityRepos.fetchData(location: location) { weatherData in
+        listCityRepos.fetchData(location: location) { [weak self] weatherData in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 self.weatherDatas.append(weatherData)
                 self.listCityCollectionView.reloadData()

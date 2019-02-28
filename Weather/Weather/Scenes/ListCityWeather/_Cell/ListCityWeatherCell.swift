@@ -33,13 +33,11 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
     
     @objc private func handleLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         switch recognizer.state {
-        case .began:
+        case .began, .changed:
             fadeView.backgroundColor = .gray
             deleteItem(at: indexPath)
-        case .ended:
-            fadeView.backgroundColor = .clear
         default:
-            break
+            fadeView.backgroundColor = .clear
         }
     }
     
@@ -88,7 +86,7 @@ extension ListCityWeatherCell {
         static let shadowRadius: CGFloat = 5
         static let minRatio: CGFloat = 0.05
         static let maxRatio: CGFloat = 0.1
-        static let maxLongPressDuration: Double = 0.3
+        static let maxLongPressDuration: Double = 0.5
         static let keyNotification = "indexPath"
     }
 }
