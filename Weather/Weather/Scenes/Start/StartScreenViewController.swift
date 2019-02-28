@@ -39,6 +39,7 @@ final class StartScreenViewController: UIViewController {
     private func updateData(with location: Location?) {
         configLocationView(false)
         guard let location = location else { return }
+        
         dataManager.updateCoreData(with: location)
     }
     
@@ -48,6 +49,7 @@ final class StartScreenViewController: UIViewController {
     
     @IBAction private func handleSkipButton(_ sender: UIButton) {
         configLocationView(false)
+        pushViewController()
     }
     
     private func pushViewController() {
@@ -64,12 +66,13 @@ extension StartScreenViewController: CLLocationManagerDelegate {
         switch status {
         case .restricted, .denied:
             updateData(with: nil)
+            pushViewController()
         case .authorizedWhenInUse:
             startReceivingLocationChanges()
+            pushViewController()
         case .notDetermined, .authorizedAlways:
             configLocationView(true)
         }
-        pushViewController()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

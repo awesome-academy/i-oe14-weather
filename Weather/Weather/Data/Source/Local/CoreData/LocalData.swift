@@ -62,6 +62,16 @@ final class LocalData: NSObject {
         save()
     }
     
+    func delete(data location: Location) {
+        fetch(LocationCoreData.self).forEach {
+            // delete location with current place id
+            if $0.placeId == location.placeId {
+                context.delete($0)
+            }
+        }
+        save()
+    }
+    
     @discardableResult
     func fetch<T: NSManagedObject>(_ type: T.Type) -> [T] {
         do {

@@ -44,7 +44,7 @@
                                             <color key="titleColor" red="0.2274509804" green="0.92941176469999998" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="dismissViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wa3-6N-azu"/>
+                                            <action selector="handleCancelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QmB-Dl-mOM"/>
                                         </connections>
                                     </button>
                                 </subviews>

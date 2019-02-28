@@ -16,6 +16,7 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
     @IBOutlet private weak var cityNameLabel: UILabel!
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var weatherImage: UIImageView!
+    private var indexPath = IndexPath(item: 0, section: 0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,12 +34,17 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
     @objc private func handleLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         switch recognizer.state {
         case .began:
-            fadeView.backgroundColor = .clear
-        case .ended:
             fadeView.backgroundColor = .gray
+            deleteItem(at: indexPath)
+        case .ended:
+            fadeView.backgroundColor = .clear
         default:
             break
         }
+    }
+    
+    private func deleteItem(at indexPath: IndexPath) {
+        NotificationCenter.default.post(name: .deleteItemAtIndexPath, object: nil, userInfo: [Constant.keyNotification: indexPath])
     }
     
     private func updateView(withColor: UIColor) {
@@ -67,10 +73,17 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
         weatherImage.image = weather.largeImage
     }
     
-    func setContentCell(with forecastWeather: ForecastWeather) {
-        guard let code = Int(forecastWeather.weather.code) else { return }
+    func setContentCell(with forecastWeather: ForecastWeather, at indexPath: IndexPath) {
+        self.indexPath = indexPath
+        var weather = WeatherColor(code: 0)
         
-        let weather = WeatherColor(code: code)
+        if forecastWeather.weather.codeTypeInt > 0 {
+            let code = forecastWeather.weather.codeTypeInt
+            weather = WeatherColor(code: code)
+        } else if let code = Int(forecastWeather.weather.codeTypeString) {
+            weather = WeatherColor(code: code)
+        }
+        
         updateView(with: forecastWeather)
         updateView(withColor: weather.backgroundColor)
     }
@@ -85,5 +98,6 @@ extension ListCityWeatherCell {
         static let minRatio: CGFloat = 0.05
         static let maxRatio: CGFloat = 0.1
         static let maxLongPressDuration: Double = 0.3
+        static let keyNotification = "indexPath"
     }
 }

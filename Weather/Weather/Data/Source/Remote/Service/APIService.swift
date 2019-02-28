@@ -29,7 +29,7 @@ class APIService {
         
         sessionManager.request(input.url, method: input.httpMethod, parameters: input.body, encoding: input.encode)
             .validate(statusCode: 200..<299)
-            .responseJSON { response in
+            .responseJSON(queue: .global(qos: .background), options: .mutableContainers) { response in
                 guard let statusCode = response.response?.statusCode else {
                     return completion(nil, .unexpectedError(response.error))
                 }
@@ -48,6 +48,6 @@ class APIService {
                         completion(nil, .unexpectedError(error))
                     }
                 }//End
-        }
+            }
     }
 }

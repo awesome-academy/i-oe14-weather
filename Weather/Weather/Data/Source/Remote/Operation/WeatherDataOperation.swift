@@ -30,17 +30,17 @@ final class WeatherDataOperation: Operation {
         let requestCurrentday = WeatherRequest(location: location)
         api.request(input: requestCurrentday) { [weak self] (response: WeatherResponse?, error) in
             guard
-                let self = self,
+                let _ = self,
                 let response = response,
-                let dailyData = response.forecastWeathers.first
-            else {
-                return dispatchGroup.leave()
+                let _ = response.forecastWeathers.first
+                else {
+                    return dispatchGroup.leave()
             }
-
-            self.weatherData.dailyWeather = dailyData
+            
+            //self.weatherData.dailyWeather = dailyData
             dispatchGroup.leave()
         }
-
+        
         let requestHourly = WeatherRequest(location: location, hours: Constant.maxHours)
         api.request(input: requestHourly) { [weak self] (response: WeatherResponse?, error) in
             guard let self = self, let response = response else {
@@ -50,7 +50,7 @@ final class WeatherDataOperation: Operation {
             self.weatherData.hourlyWeather = response.forecastWeathers
             dispatchGroup.leave()
         }
-
+        
         let requestForecastday = WeatherRequest(location: location, days: Constant.maxDays)
         api.request(input: requestForecastday) { [weak self] (response: WeatherResponse?, error) in
             guard let self = self, let response = response else {
