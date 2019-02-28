@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="886" y="851"/>
         </scene>
-        <!--List Detail City Weather View Controller-->
+        <!--Paging City Weather View Controller-->
         <scene sceneID="AMX-nI-ip6">
             <objects>
-                <viewController storyboardIdentifier="ListDetailCityWeatherViewController" id="uNQ-G4-KsE" customClass="ListDetailCityWeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PagingCityWeatherViewController" id="uNQ-G4-KsE" customClass="PagingCityWeatherViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wFY-vl-FTU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,8 +134,8 @@
                                             <action selector="handleBackButton:" destination="uNQ-G4-KsE" eventType="touchUpInside" id="2jA-eB-30f"/>
                                         </connections>
                                     </button>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="zR1-3I-S1Q">
-                                        <rect key="frame" x="152" y="0.0" width="71" height="40"/>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zR1-3I-S1Q">
+                                        <rect key="frame" x="187.5" y="0.0" width="0.0" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="t7q-uu-26c"/>
                                         </constraints>
@@ -167,6 +167,7 @@
                         <viewLayoutGuide key="safeArea" id="NTs-hd-V0v"/>
                     </view>
                     <connections>
+                        <outlet property="pageControl" destination="zR1-3I-S1Q" id="wsc-xJ-lLB"/>
                         <outlet property="weatherCollectionView" destination="wQ6-An-TtV" id="bTO-aV-gg0"/>
                     </connections>
                 </viewController>

@@ -137,7 +137,7 @@ private extension ListCityWeatherViewController {
     }
     
     func pushViewController() {
-        let listDetailCity = ListDetailCityWeatherViewController.instantiate()
+        let listDetailCity = PagingCityWeatherViewController.instantiate()
         navigationController?.pushViewController(listDetailCity, animated: true)
     }
 }

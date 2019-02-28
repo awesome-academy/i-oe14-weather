@@ -1,5 +1,5 @@
 //
-//  ListDetailCityWeatherViewController.swift
+//  PagingCityWeatherViewController.swift
 //  Weather
 //
 //  Created by minh duc on 2/28/19.
@@ -9,8 +9,10 @@
 import UIKit
 import Reusable
 
-final class ListDetailCityWeatherViewController: UIViewController {
+final class PagingCityWeatherViewController: UIViewController {
     @IBOutlet weak var weatherCollectionView: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     var weatherDatas = [WeatherData]()
     
     override func viewDidLoad() {
@@ -20,7 +22,7 @@ final class ListDetailCityWeatherViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        viewDidDisappear(animated)
+        super.viewDidDisappear(animated)
         removeObserver()
     }
     
@@ -29,13 +31,8 @@ final class ListDetailCityWeatherViewController: UIViewController {
     }
 }
 
-// MARK: - StoryboardSceneBased
-extension ListDetailCityWeatherViewController: StoryboardSceneBased {
-    static let sceneStoryboard = Storyboard.main
-}
-
 // MARK: - UICollectionViewDataSource + UICollectionViewFlowLayout
-extension ListDetailCityWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PagingCityWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherDatas.count
     }
@@ -50,12 +47,18 @@ extension ListDetailCityWeatherViewController: UICollectionViewDataSource, UICol
     }
 }
 
-// MARK: - ListDetailCityWeatherViewController
-private extension ListDetailCityWeatherViewController {
+// MARK: - PagingCityWeatherViewController
+private extension PagingCityWeatherViewController {
     func configureUICollectionView() {
-        weatherCollectionView.register(cellType: DetailCityWeatherCell.self)
-        weatherCollectionView.dataSource = self
-        weatherCollectionView.delegate = self
+        weatherCollectionView.do {
+            $0.register(cellType: DetailCityWeatherCell.self)
+            $0.dataSource = self
+            $0.delegate = self
+        }
+        
+        pageControl.do {
+            $0.numberOfPages = weatherDatas.count
+        }
     }
     
     func addObserver() {
@@ -75,4 +78,9 @@ private extension ListDetailCityWeatherViewController {
             weatherCollectionView.reloadData()
         }
     }
+}
+
+// MARK: - StoryboardSceneBased
+extension PagingCityWeatherViewController: StoryboardSceneBased {
+    static let sceneStoryboard = Storyboard.main
 }

@@ -8,14 +8,15 @@
 
 import UIKit
 import Reusable
+import ShadowView
 
 final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
-    @IBOutlet private weak var mainView: UIView!
-    @IBOutlet private weak var shadowView: UIView!
+    @IBOutlet private weak var shadowView: ShadowView!
     @IBOutlet private weak var fadeView: UIView!
     @IBOutlet private weak var cityNameLabel: UILabel!
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var weatherImage: UIImageView!
+    @IBOutlet private weak var shadowImage: UIImageView!
     private var indexPath = IndexPath(item: 0, section: 0)
     
     override func awakeFromNib() {
@@ -45,36 +46,21 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
         NotificationCenter.default.post(name: .deleteItemAtIndexPath, object: nil, userInfo: [Constant.keyNotification: indexPath])
     }
     
-    private func updateView(withColor: UIColor) {
-        mainView.do {
-            $0.scaleCornerRadius(Constant.minRatio)
-            $0.backgroundColor = withColor
-        }
-        
-        fadeView.do {
-            $0.scaleCornerRadius(Constant.minRatio)
-            $0.backgroundColor = .clear
-        }
-        
-        shadowView.do {
-            $0.backgroundColor = withColor
-            $0.scaleCornerRadius(Constant.maxRatio)
-            $0.dropShadow(withColor, offSet: Constant.shadowOffset, opacity: Constant.shadowOpacity, radius: Constant.shadowRadius)
-        }
-    }
-    
     private func updateView(with forecastWeather: ForecastWeather) {
         let weather = Weather(forecastWeather.weather.icon)
+        let city = CityBackgrounds(forecastWeather.weather.code)
+        
+        weatherImage.image = weather.largeImage
+        shadowImage.image = city.backgroundImage
         cityNameLabel.text = forecastWeather.cityName
         temperatureLabel.text = forecastWeather.temperature.celsius
-        weatherImage.image = weather.largeImage
+        shadowView.updateShadow()
+        fadeView.scaleCornerRadius(Constant.minRatio)
     }
     
     func setContentCell(with forecastWeather: ForecastWeather, at indexPath: IndexPath) {
         self.indexPath = indexPath
-        let weather = WeatherColor(code: forecastWeather.weather.code)
         updateView(with: forecastWeather)
-        updateView(withColor: weather.backgroundColor)
     }
 }
 
