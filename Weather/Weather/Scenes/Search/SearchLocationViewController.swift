@@ -15,10 +15,16 @@ final class SearchLocationViewController: BaseTableViewController {
     
     private let searchRepo = SearchRepository()
     private var predictions = [Prediction]()
+    weak var listCityDelegate: ListCityDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        listCityDelegate = nil
     }
     
     private func configView() {
@@ -36,7 +42,11 @@ final class SearchLocationViewController: BaseTableViewController {
         }
     }
     
-    @IBAction func dismissViewController(_ sender: UIButton) {
+    @IBAction func handleCancelButton(_ sender: UIButton) {
+        dismissViewController()
+    }
+    
+    private func dismissViewController() {
         searchBar.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
@@ -59,14 +69,24 @@ extension SearchLocationViewController {
         
         let placeId = predictions[indexPath.row].placeId
         searchRepo.searchCoordinate(of: placeId) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                guard let _ = data else { return }
-            case .failed(let error):
-                self.showErrorMessage(message: error?.errorMessage)
+            guard let self = self,
+                let listCityDelegate = self.listCityDelegate
+            else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    guard let data = data else { return }
+                    
+                    let location = Location(placeId: placeId, coordinate: data.coordinate)
+                    DataManager.share.updateCoreData(with: location)
+                    listCityDelegate.updateData(at: location)
+                    self.dismissViewController()
+                case .failed(let error):
+                    self.showErrorMessage(message: error?.errorMessage)
+                }
+                self.stopLoading()
             }
-            self.stopLoading()
         }
     }
 }
@@ -79,8 +99,11 @@ extension SearchLocationViewController: UISearchBarDelegate {
             switch result {
             case .success(let data):
                 guard let data = data else { return }
-                self.predictions = data.predictions
-                self.loadingSuccess()
+                
+                DispatchQueue.main.async {
+                    self.predictions = data.predictions
+                    self.loadingSuccess()
+                }
             case .failed(let error):
                 self.predictions.removeAll()
                 self.loadingFailed(error?.errorMessage)

@@ -21,6 +21,10 @@ final class DataManager: NSObject {
         localData.update(data: location)
     }
     
+    func deleteCoreData(with location: Location) {
+        localData.delete(data: location)
+    }
+    
     func getLocations() -> [Location] {
         let locationData = localData.fetch(LocationCoreData.self)
         var locations = [Location]()

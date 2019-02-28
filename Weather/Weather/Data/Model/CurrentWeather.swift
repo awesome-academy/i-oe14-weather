@@ -10,7 +10,7 @@ import ObjectMapper
 
 final class CurrentWeather: Mappable {
     var icon = ""
-    var code = ""
+    var code = 0
     var description = ""
     
     init() { }
@@ -19,7 +19,7 @@ final class CurrentWeather: Mappable {
     
     func mapping(map: Map) {
         icon <- map["icon"]
-        code <- map["code"]
+        code <- (map["code"], IntTransform())
         description <- map["description"]
     }
 }
