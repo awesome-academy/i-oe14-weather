@@ -38,7 +38,7 @@
 		22878D57221BB05900ABFCBC /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22878D55221BB05900ABFCBC /* SearchLocationCell.swift */; };
 		22878D58221BB05900ABFCBC /* SearchLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22878D56221BB05900ABFCBC /* SearchLocationCell.xib */; };
 		22878D5B221BB98E00ABFCBC /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22878D5A221BB98E00ABFCBC /* SearchRepository.swift */; };
-		228C58AC22279FD400224A30 /* TransformTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C58AB22279FD400224A30 /* TransformTypeExtension.swift */; };
+		228C58AA22277EA700224A30 /* CityBackgrounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C58A922277EA700224A30 /* CityBackgrounds.swift */; };
 		22A43BE8221C2A500085DD93 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A43BE7221C2A500085DD93 /* BaseTableViewController.swift */; };
 		22A43BEA221C2BDC0085DD93 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A43BE9221C2BDC0085DD93 /* UIViewExtensions.swift */; };
 		22A64F6C22156FC8003266BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A64F6B22156FC8003266BA /* AppDelegate.swift */; };
@@ -94,7 +94,7 @@
 		22878D55221BB05900ABFCBC /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		22878D56221BB05900ABFCBC /* SearchLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchLocationCell.xib; sourceTree = "<group>"; };
 		22878D5A221BB98E00ABFCBC /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
-		228C58AB22279FD400224A30 /* TransformTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTypeExtension.swift; sourceTree = "<group>"; };
+		228C58A922277EA700224A30 /* CityBackgrounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBackgrounds.swift; sourceTree = "<group>"; };
 		22A43BE7221C2A500085DD93 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		22A43BE9221C2BDC0085DD93 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		22A64F6822156FC8003266BA /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,6 +432,7 @@
 				2209E48422242DE4009C8A18 /* WeatherColor.swift */,
 				22D6E67A2224DD0F00A2CE60 /* Screen.swift */,
 				22D6E67C2224DD3900A2CE60 /* Storyboard.swift */,
+				228C58A922277EA700224A30 /* CityBackgrounds.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -568,6 +569,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
+				"${BUILT_PRODUCTS_DIR}/ShadowView/ShadowView.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -579,6 +581,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ShadowView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +634,7 @@
 				22BC7BFD2225684B007F4483 /* DoubleExtensions.swift in Sources */,
 				22CF181522169A93004D20ED /* APIService.swift in Sources */,
 				22AEF107221D2EF2005A60C0 /* CGRectExtensions.swift in Sources */,
+				228C58AA22277EA700224A30 /* CityBackgrounds.swift in Sources */,
 				2280CDAD221E40FD00F7E5DF /* CoordinateRequest.swift in Sources */,
 				22C6536A221E8CDC00284889 /* Images.swift in Sources */,
 				22436D9622224BA4006E8489 /* Location.swift in Sources */,
