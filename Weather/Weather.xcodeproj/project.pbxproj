@@ -38,6 +38,7 @@
 		22878D57221BB05900ABFCBC /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22878D55221BB05900ABFCBC /* SearchLocationCell.swift */; };
 		22878D58221BB05900ABFCBC /* SearchLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22878D56221BB05900ABFCBC /* SearchLocationCell.xib */; };
 		22878D5B221BB98E00ABFCBC /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22878D5A221BB98E00ABFCBC /* SearchRepository.swift */; };
+		228C58AC22279FD400224A30 /* TransformTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C58AB22279FD400224A30 /* TransformTypeExtension.swift */; };
 		22A43BE8221C2A500085DD93 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A43BE7221C2A500085DD93 /* BaseTableViewController.swift */; };
 		22A43BEA221C2BDC0085DD93 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A43BE9221C2BDC0085DD93 /* UIViewExtensions.swift */; };
 		22A64F6C22156FC8003266BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A64F6B22156FC8003266BA /* AppDelegate.swift */; };
@@ -93,6 +94,7 @@
 		22878D55221BB05900ABFCBC /* SearchLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
 		22878D56221BB05900ABFCBC /* SearchLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchLocationCell.xib; sourceTree = "<group>"; };
 		22878D5A221BB98E00ABFCBC /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		228C58AB22279FD400224A30 /* TransformTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformTypeExtension.swift; sourceTree = "<group>"; };
 		22A43BE7221C2A500085DD93 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		22A43BE9221C2BDC0085DD93 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		22A64F6822156FC8003266BA /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +299,7 @@
 				2209E48222242503009C8A18 /* UIColor+CGColorExtensions.swift */,
 				22BC7BFC2225684B007F4483 /* DoubleExtensions.swift */,
 				22B790F32226D4D00084B02A /* NotificationExtensions.swift */,
+				228C58AB22279FD400224A30 /* TransformTypeExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				22A43BEA221C2BDC0085DD93 /* UIViewExtensions.swift in Sources */,
 				22D6E687222518CA00A2CE60 /* WeatherData.swift in Sources */,
 				22878D57221BB05900ABFCBC /* SearchLocationCell.swift in Sources */,
+				228C58AC22279FD400224A30 /* TransformTypeExtension.swift in Sources */,
 				2241C573221A4FFA004EC5B3 /* BaseResult.swift in Sources */,
 				2209E48322242503009C8A18 /* UIColor+CGColorExtensions.swift in Sources */,
 				221555B522227D4E00D11E42 /* ForecastWeather.swift in Sources */,

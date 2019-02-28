@@ -15,7 +15,7 @@ final class WeatherData: NSObject {
     var forecastdayWeather = [ForecastWeather]()
     
     var hasData: Bool {
-        return dailyWeather.count > 0 && hourlyWeather.count > 0 || forecastdayWeather.count > 0
+        return dailyWeather.count > 0 && hourlyWeather.count > 0 && forecastdayWeather.count > 0
     }
     
     override init() {

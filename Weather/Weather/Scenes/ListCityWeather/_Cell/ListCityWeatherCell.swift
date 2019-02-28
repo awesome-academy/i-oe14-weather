@@ -67,7 +67,6 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
     
     private func updateView(with forecastWeather: ForecastWeather) {
         let weather = Weather(forecastWeather.weather.icon)
-        
         cityNameLabel.text = forecastWeather.cityName
         temperatureLabel.text = forecastWeather.temperature.celsius
         weatherImage.image = weather.largeImage
@@ -75,15 +74,7 @@ final class ListCityWeatherCell: UICollectionViewCell, NibReusable {
     
     func setContentCell(with forecastWeather: ForecastWeather, at indexPath: IndexPath) {
         self.indexPath = indexPath
-        var weather = WeatherColor(code: 0)
-        
-        if forecastWeather.weather.codeTypeInt > 0 {
-            let code = forecastWeather.weather.codeTypeInt
-            weather = WeatherColor(code: code)
-        } else if let code = Int(forecastWeather.weather.codeTypeString) {
-            weather = WeatherColor(code: code)
-        }
-        
+        let weather = WeatherColor(code: forecastWeather.weather.code)
         updateView(with: forecastWeather)
         updateView(withColor: weather.backgroundColor)
     }

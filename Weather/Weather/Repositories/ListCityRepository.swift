@@ -47,55 +47,50 @@ final class ListCityRepository: NSObject {
             // start current request
             serialQueue.sync { [weak self] in
                 guard let self = self else { return }
-
                 dispatchGroup.enter()
-                let requestCurrentday = WeatherRequest(location: location)
                 
+                let requestCurrentday = WeatherRequest(location: location)
                 self.api.request(input: requestCurrentday) { (response: WeatherResponse?, error) in
                     guard let dailyData = response?.forecastWeathers else {
                         return dispatchGroup.leave()
                     }
-                    
                     weatherData.dailyWeather = dailyData
                     dispatchGroup.leave()
                 }
-                
                 dispatchGroup.wait()
             }
             
             // start hourly request
-            serialQueue.sync {
+            serialQueue.sync { [weak self] in
+                guard let self = self else { return }
                 dispatchGroup.enter()
-                let requestHourly = WeatherRequest(location: location, hours: Constant.maxHours)
                 
+                let requestHourly = WeatherRequest(location: location, hours: Constant.maxHours)
                 self.api.request(input: requestHourly) { (response: WeatherResponse?, error) in
                     guard let response = response else {
                         return dispatchGroup.leave()
                     }
-
                     weatherData.hourlyWeather = response.forecastWeathers
                     dispatchGroup.leave()
                 }
-                
                 dispatchGroup.wait()
             }
             
             // start daily request
-            serialQueue.sync {
+            serialQueue.sync { [weak self] in
+                guard let self = self else { return }
                 dispatchGroup.enter()
-                let requestForecastday = WeatherRequest(location: location, days: Constant.maxDays)
                 
+                let requestForecastday = WeatherRequest(location: location, days: Constant.maxDays)
                 self.api.request(input: requestForecastday) { (response: WeatherResponse?, error) in
                     guard let response = response else {
                         return dispatchGroup.leave()
                     }
-                    
                     weatherData.forecastdayWeather = response.forecastWeathers
                     dispatchGroup.leave()
                 }
                 dispatchGroup.wait()
             }
-            
             completion(weatherData)
         }
     }

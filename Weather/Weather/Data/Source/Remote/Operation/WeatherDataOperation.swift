@@ -33,11 +33,9 @@ final class WeatherDataOperation: Operation {
                 let _ = self,
                 let response = response,
                 let _ = response.forecastWeathers.first
-                else {
-                    return dispatchGroup.leave()
+            else {
+                return dispatchGroup.leave()
             }
-            
-            //self.weatherData.dailyWeather = dailyData
             dispatchGroup.leave()
         }
         
