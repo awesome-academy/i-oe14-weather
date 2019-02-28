@@ -1,5 +1,11 @@
-## [Pull request title]
+### Issue Link :link:
+<!-- What is your redmine link for this task? -->
 
-### [Redmine link]
+### Goals :soccer:
+<!-- List the high-level objectives of this pull request. -->
+- 
+- 
+- 
 
-#### Screenshots (nếu có)
+### Implementation Details :construction:
+<!-- Provide some kind of evidence that your task is running like screenshots or videos. -->
