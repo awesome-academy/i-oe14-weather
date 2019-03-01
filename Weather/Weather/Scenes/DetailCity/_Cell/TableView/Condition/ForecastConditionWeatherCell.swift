@@ -1,5 +1,5 @@
 //
-//  ForecastHourlyWeatherCell.swift
+//  ForecastConditionWeatherCell.swift
 //  Weather
 //
 //  Created by minh duc on 3/1/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-final class ForecastHourlyWeatherCell: UITableViewCell, NibReusable {
+final class ForecastConditionWeatherCell: UITableViewCell, NibReusable {
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -10,10 +10,10 @@ import UIKit
 import Reusable
 
 final class PagingCityWeatherViewController: UIViewController {
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var weatherCollectionView: UICollectionView!
+    @IBOutlet private weak var pageControl: UIPageControl!
+    @IBOutlet private weak var weatherCollectionView: UICollectionView!
     
-    var weatherDatas = [WeatherData]()
+    var weatherData = [WeatherData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +34,12 @@ final class PagingCityWeatherViewController: UIViewController {
 // MARK: - UICollectionViewDataSource + UICollectionViewFlowLayout
 extension PagingCityWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherDatas.count
+        return weatherData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PagingCityWeatherCell.self)
-        cell.configureCell(withData: weatherDatas[indexPath.row])
+        cell.configureCell(withData: weatherData[indexPath.row])
         return cell
     }
     
@@ -58,7 +58,7 @@ private extension PagingCityWeatherViewController {
         }
         
         pageControl.do {
-            $0.numberOfPages = weatherDatas.count
+            $0.numberOfPages = weatherData.count
         }
     }
     
@@ -74,8 +74,8 @@ private extension PagingCityWeatherViewController {
     }
     
     @objc func weatherDataDidChange(_ notification: Notification) {
-        if let weatherData = notification.object as? WeatherData {
-            weatherDatas.append(weatherData)
+        if let data = notification.object as? WeatherData {
+            weatherData.append(data)
             weatherCollectionView.reloadData()
         }
     }
@@ -84,7 +84,7 @@ private extension PagingCityWeatherViewController {
 // MARK: - ScrollViewDelegate
 extension PagingCityWeatherViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentPage = Int(scrollView.contentOffset.x/Screen.width)
+        let currentPage = Int(scrollView.contentOffset.x / Screen.width)
         pageControl.currentPage = currentPage
     }
 }
