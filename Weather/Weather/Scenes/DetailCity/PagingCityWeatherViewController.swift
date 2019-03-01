@@ -10,8 +10,8 @@ import UIKit
 import Reusable
 
 final class PagingCityWeatherViewController: UIViewController {
-    @IBOutlet weak var weatherCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var weatherCollectionView: UICollectionView!
     
     var weatherDatas = [WeatherData]()
     
@@ -38,7 +38,8 @@ extension PagingCityWeatherViewController: UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: DetailCityWeatherCell.self)
+        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PagingCityWeatherCell.self)
+        cell.configureCell(withData: weatherDatas[indexPath.row])
         return cell
     }
     
@@ -51,7 +52,7 @@ extension PagingCityWeatherViewController: UICollectionViewDataSource, UICollect
 private extension PagingCityWeatherViewController {
     func configureUICollectionView() {
         weatherCollectionView.do {
-            $0.register(cellType: DetailCityWeatherCell.self)
+            $0.register(cellType: PagingCityWeatherCell.self)
             $0.dataSource = self
             $0.delegate = self
         }
@@ -77,6 +78,14 @@ private extension PagingCityWeatherViewController {
             weatherDatas.append(weatherData)
             weatherCollectionView.reloadData()
         }
+    }
+}
+
+// MARK: - ScrollViewDelegate
+extension PagingCityWeatherViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentPage = Int(scrollView.contentOffset.x/Screen.width)
+        pageControl.currentPage = currentPage
     }
 }
 

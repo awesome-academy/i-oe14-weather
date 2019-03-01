@@ -19,6 +19,7 @@ final class ForecastWeather: Mappable {
     var sunset = ""
     var sunrise = ""
     var cityName = ""
+    var datetime = ""
     var weather = CurrentWeather()
     
     init() { }
@@ -37,5 +38,6 @@ final class ForecastWeather: Mappable {
         sunrise <- map["sunrise"]
         cityName <- map["city_name"]
         weather <- map["weather"]
+        datetime <- map["datetime"]
     }
 }
