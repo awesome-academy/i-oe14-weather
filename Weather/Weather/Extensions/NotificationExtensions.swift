@@ -10,4 +10,5 @@ import Foundation
 
 extension NSNotification.Name {
     static let deleteItemAtIndexPath = NSNotification.Name.init("deleteItemAtIndexPath")
+    static let weatherDataDidChange = NSNotification.Name.init("weatherDataDidChange")
 }
