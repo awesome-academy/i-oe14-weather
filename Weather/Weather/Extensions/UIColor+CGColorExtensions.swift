@@ -27,11 +27,11 @@ extension UIColor {
         self.init(red: components.R, green: components.G, blue: components.B, alpha: 1)
     }
     
-    static let sunny = UIColor(hex: 0xFE9928)
-    static let snow = UIColor(hex: 0x5F6AF4)
-    static let rain = UIColor(hex: 0x60D7B1)
-    static let thunder = UIColor(hex: 0x9072EE)
     static let wind = UIColor(hex: 0xFEDE82)
-    static let cloudy = UIColor(hex: 0x7689D6)
-    static let other = UIColor(hex: 0x9BEE52)
+    static let humidity = UIColor(hex: 0x5F6AF4)
+    static let uv = UIColor(hex: 0x7051F0)
+    static let pressure = UIColor(hex: 0x5F6AF4)
+    static let visibility = UIColor(hex: 0x80C2AB)
+    static let sunrise = UIColor(hex: 0xFBED57)
+    static let sunset = UIColor(hex: 0xFE9928)
 }

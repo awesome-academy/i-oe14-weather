@@ -26,6 +26,9 @@ final class PagingCityWeatherCell: UICollectionViewCell, NibReusable {
     
     func configureCell(withData data: WeatherData) {
         weatherData = data
+        if let weatherData = weatherData.dailyWeather.first {
+            configureView(withData: weatherData)
+        }
     }
 }
 
@@ -37,11 +40,25 @@ extension PagingCityWeatherCell: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 0...2:
+        case 0:
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ForecastdayWeatherCell.self)
+            cell.setContentCell(data: weatherData, categories: .daily)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ForecastdayWeatherCell.self)
+            cell.setContentCell(data: weatherData, categories: .hourly)
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ForecastdayWeatherCell.self)
+            cell.setContentCell(data: weatherData, categories: .forecastday)
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ForecastConditionWeatherCell.self)
+            cell.setContentCell(data: weatherData, categories: .uv)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ForecastConditionWeatherCell.self)
+            cell.setContentCell(data: weatherData, categories: .humidity)
             return cell
         }
     }
@@ -84,7 +101,7 @@ private extension PagingCityWeatherCell {
         static let maxRow = 5
         static let maxAlpha: CGFloat = 1
         static let minHeightHeader: CGFloat = 0
-        static let dailyHeightRow: CGFloat = 150
+        static let dailyHeightRow: CGFloat = 160
         static let hourlyHeightRow: CGFloat = 200
         static let humidityHeightRow: CGFloat = 300
         static let forecastdayHeightRow: CGFloat = 250
@@ -106,6 +123,6 @@ private extension PagingCityWeatherCell {
         imageWeather.image = weather.largeImage
         descriptionLabel.text = data.weather.description
         temperatureLabel.text = data.temperature.celsius
-        dateLabel.text = data.datetime
+        dateLabel.text = "\(data.cityName), " + data.datetime.ddMMyyyy(data.timezone)
     }
 }

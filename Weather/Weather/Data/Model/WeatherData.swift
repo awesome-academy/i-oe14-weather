@@ -14,6 +14,19 @@ final class WeatherData: NSObject {
     var hourlyWeather = [ForecastWeather]()
     var forecastdayWeather = [ForecastWeather]()
     
+    var conditions: [String] {
+        guard let conditions = dailyWeather.first else {
+            return [String]()
+        }
+        return [Double(conditions.humidity).percent,
+                conditions.uv.formated,
+                conditions.visibility.km,
+                conditions.windspeed.ms,
+                conditions.pressure.hPa,
+                conditions.sunset.am(conditions.timezone),
+                conditions.sunrise.pm(conditions.timezone)]
+    }
+    
     var hasData: Bool {
         return dailyWeather.count > 0 && hourlyWeather.count > 0 && forecastdayWeather.count > 0
     }

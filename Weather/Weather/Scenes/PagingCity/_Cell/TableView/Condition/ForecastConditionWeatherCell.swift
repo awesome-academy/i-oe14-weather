@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Reusable
 
-final class ForecastConditionWeatherCell: UITableViewCell, NibReusable {
+final class ForecastConditionWeatherCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
