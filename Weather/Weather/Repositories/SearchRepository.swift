@@ -9,7 +9,7 @@
 import Foundation
 
 final class SearchRepository: NSObject {
-    private let api = APIService.share
+    private let api = APIService.shared
     
     override init() {
         super.init()

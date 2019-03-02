@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-final class PagingCityWeatherViewController: UIViewController {
+final class PagingCityWeatherViewController: BaseViewController {
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var weatherCollectionView: UICollectionView!
     
@@ -17,17 +17,15 @@ final class PagingCityWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addObserver()
-        configureUICollectionView()
+        configureCollectionView()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObserver()
+
+    override func addObserver() {
+        notificationCenter.addObserver(self, selector: #selector(weatherDataDidChange), name: .weatherDataDidChange, object: nil)
     }
     
     @IBAction private func handleBackButton(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        popViewController()
     }
 }
 
@@ -50,7 +48,7 @@ extension PagingCityWeatherViewController: UICollectionViewDataSource, UICollect
 
 // MARK: - PagingCityWeatherViewController
 private extension PagingCityWeatherViewController {
-    func configureUICollectionView() {
+    func configureCollectionView() {
         weatherCollectionView.do {
             $0.register(cellType: PagingCityWeatherCell.self)
             $0.dataSource = self
@@ -60,17 +58,6 @@ private extension PagingCityWeatherViewController {
         pageControl.do {
             $0.numberOfPages = weatherData.count
         }
-    }
-    
-    func addObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(weatherDataDidChange),
-                                               name: .weatherDataDidChange,
-                                               object: nil)
-    }
-    
-    func removeObserver() {
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func weatherDataDidChange(_ notification: Notification) {
@@ -87,9 +74,4 @@ extension PagingCityWeatherViewController: UIScrollViewDelegate {
         let currentPage = Int(scrollView.contentOffset.x / Screen.width)
         pageControl.currentPage = currentPage
     }
-}
-
-// MARK: - StoryboardSceneBased
-extension PagingCityWeatherViewController: StoryboardSceneBased {
-    static let sceneStoryboard = Storyboard.main
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Then
 
-class BaseTableViewController: UIViewController {
+class BaseTableViewController: BaseViewController {
     @IBOutlet weak var baseTableView: UITableView!
     
     private struct Constant {
@@ -23,18 +23,9 @@ class BaseTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configTableView()
+        configureTableView()
     }
     
-    func configTableView() {
-        baseTableView.do {
-            $0.dataSource = self
-            $0.delegate = self
-        }
-    }
-}
-// MARK: - Extensions
-extension BaseTableViewController {
     func loadingSuccess() {
         baseTableView.do {
             $0.tableHeaderView = nil
@@ -49,7 +40,15 @@ extension BaseTableViewController {
             $0.reloadData()
         }
     }
+    
+    func configureTableView() {
+        baseTableView.do {
+            $0.dataSource = self
+            $0.delegate = self
+        }
+    }
 }
+
 // MARK: - UITableViewDataSource + UITableViewDelegate
 extension BaseTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

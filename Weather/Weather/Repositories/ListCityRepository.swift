@@ -9,8 +9,8 @@
 import Foundation
 
 final class ListCityRepository: NSObject {
-    private let api = APIService.share
-    private let dataManager = DataManager.share
+    private let api = APIService.shared
+    private let database = Database.shared
     private let operationQueue = OperationQueue().then {
         $0.maxConcurrentOperationCount = 1
         $0.qualityOfService = .utility

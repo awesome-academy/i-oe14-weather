@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 extension UIViewController {    
     func showAlertView(title: String?, message: String?, cancelButton: String?, otherButtons: [String]? = nil,
@@ -38,13 +37,5 @@ extension UIViewController {
     
     func showErrorMessage(message: String?) {
         showAlertView(title: Constants.warning, message: message, cancelButton: Constants.ok, type: .alert)
-    }
-    
-    func startLoading() {
-        MBProgressHUD.showAdded(to: view, animated: true)
-    }
-    
-    func stopLoading() {
-        MBProgressHUD.hide(for: view, animated: true)
     }
 }

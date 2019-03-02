@@ -9,43 +9,34 @@
 import UIKit
 import Reusable
 
-protocol ListCityDelegate: class {
-    func updateData(at location: Location)
-}
-
-final class ListCityWeatherViewController: UIViewController {
+final class ListCityWeatherViewController: BaseViewController {
     @IBOutlet private weak var listCityCollectionView: UICollectionView!
     
-    private var weatherDatas = [WeatherData]()
-    private let dataManager = DataManager.share
+    private var weatherData = [WeatherData]()
     private let listCityRepos = ListCityRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
-        addObserver()
-        configureUICollectionView()
+        configureCollectionView()
     }
     
-    private func initData() {        
-        listCityRepos.fetchData(locations: dataManager.getLocations()) { [weak self] weatherData in
+    override func initData() {
+        listCityRepos.fetchData(locations: database.getLocations()) { [weak self] weatherData in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 if !weatherData.hasData { return }
-                self.weatherDatas.append(weatherData)
+                self.weatherData.append(weatherData)
                 self.listCityCollectionView.reloadData()
             }
         }
     }
     
-    private func addObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(deleteItemAtIndexPath),
-                                               name: .deleteItemAtIndexPath,
-                                               object: nil)
+    override func addObserver() {
+        notificationCenter.addObserver(self, selector: #selector(deleteItemAtIndexPath), name: .deleteItemAtIndexPath, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(weatherDataDidChange), name: .weatherDataDidChange, object: nil)
     }
     
-    private func configureUICollectionView() {
+    private func configureCollectionView() {
         listCityCollectionView.do {
             $0.delegate = self
             $0.dataSource = self
@@ -57,13 +48,13 @@ final class ListCityWeatherViewController: UIViewController {
         guard
             let dictionary = notification.userInfo as? [String: Any],
             let indexPath = dictionary[Constant.keyNotification] as? IndexPath,
-            let currentCity = weatherDatas[indexPath.row].dailyWeather.first
+            let currentCity = weatherData[indexPath.row].dailyWeather.first
         else {
             return
         }
         
         let deleteMessage = Constant.deleteTitle + currentCity.cityName
-        let location = weatherDatas[indexPath.row].location
+        let location = weatherData[indexPath.row].location
         
         showAlertView(title: nil, message: nil,
                       cancelButton: Constant.cancelTitle,
@@ -71,15 +62,14 @@ final class ListCityWeatherViewController: UIViewController {
                       type: .actionSheet, cancelAction: nil) { [weak self] _ in
             guard let self = self else { return }
                         
-            self.weatherDatas.remove(at: indexPath.row)
-            self.dataManager.deleteCoreData(with: location)
+            self.weatherData.remove(at: indexPath.row)
+            self.database.delete(data: location)
             self.listCityCollectionView.reloadData()
         }
     }
     
     @IBAction private func handleAddButton(_ sender: UIButton) {
         let searchController = SearchLocationViewController.instantiate()
-        searchController.listCityDelegate = self
         present(searchController, animated: true, completion: nil)
     }
 }
@@ -87,12 +77,12 @@ final class ListCityWeatherViewController: UIViewController {
 // MARK: - CollectionViewDataSource + DelegateFlowLayout
 extension ListCityWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherDatas.count
+        return weatherData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ListCityWeatherCell.self)
-        if let lastData = weatherDatas[indexPath.row].dailyWeather.last {
+        if let lastData = weatherData[indexPath.row].dailyWeather.last {
             cell.setContentCell(with: lastData, at: indexPath)
         }
         return cell
@@ -104,25 +94,8 @@ extension ListCityWeatherViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if presentedViewController == nil {
-            pushViewController()
-        }
-    }
-}
-
-// MARK: - StoryboardSceneBased
-extension ListCityWeatherViewController: StoryboardSceneBased {
-    static let sceneStoryboard = Storyboard.main
-}
-
-// MARK: - ListCityDelegate
-extension ListCityWeatherViewController: ListCityDelegate {
-    func updateData(at location: Location) {
-        listCityRepos.fetchData(location: location) { [weak self] weatherData in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.weatherDatas.append(weatherData)
-                self.listCityCollectionView.reloadData()
-            }
+            let viewController = push(PagingCityWeatherViewController.self)
+            viewController?.weatherData = weatherData
         }
     }
 }
@@ -135,9 +108,11 @@ private extension ListCityWeatherViewController {
         static let deleteTitle = "Delete "
         static let keyNotification = "indexPath"
     }
-    
-    func pushViewController() {
-        let listDetailCity = PagingCityWeatherViewController.instantiate()
-        navigationController?.pushViewController(listDetailCity, animated: true)
+
+    @objc func weatherDataDidChange(_ notification: Notification) {
+        if let data = notification.object as? WeatherData {
+            weatherData.append(data)
+            listCityCollectionView.reloadData()
+        }
     }
 }

@@ -8,17 +8,15 @@
 
 import UIKit
 import CoreLocation
-import Reusable
 
-final class StartScreenViewController: UIViewController {
+final class StartScreenViewController: BaseViewController {
     @IBOutlet private weak var locationView: UIView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    
-    private let dataManager = DataManager.share
     
     private struct Constant {
         static let distance: CLLocationDistance = 5
         static let placeId = "placeId"
+        static let timeOut: DispatchTime = .now() + 1
     }
 
     private let locationManager = CLLocationManager().then {
@@ -39,8 +37,7 @@ final class StartScreenViewController: UIViewController {
     private func updateData(with location: Location?) {
         configLocationView(false)
         guard let location = location else { return }
-        
-        dataManager.updateCoreData(with: location)
+        database.contains(location)
     }
     
     @IBAction private func handleLocationButton(_ sender: UIButton) {
@@ -49,13 +46,12 @@ final class StartScreenViewController: UIViewController {
     
     @IBAction private func handleSkipButton(_ sender: UIButton) {
         configLocationView(false)
-        pushViewController()
+        push(after: .now())
     }
     
-    private func pushViewController() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let cityController = ListCityWeatherViewController.instantiate()
-            self.navigationController?.pushViewController(cityController, animated: true)
+    private func push(after timeOut: DispatchTime) {
+        DispatchQueue.main.asyncAfter(deadline: timeOut) {
+            self.push(ListCityWeatherViewController.self)
         }
     }
 }
@@ -66,10 +62,10 @@ extension StartScreenViewController: CLLocationManagerDelegate {
         switch status {
         case .restricted, .denied:
             updateData(with: nil)
-            pushViewController()
+            push(after: Constant.timeOut)
         case .authorizedWhenInUse:
             startReceivingLocationChanges()
-            pushViewController()
+            push(after: Constant.timeOut)
         case .notDetermined, .authorizedAlways:
             configLocationView(true)
         }

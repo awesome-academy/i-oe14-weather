@@ -1,5 +1,5 @@
 //
-//  LocalData.swift
+//  DataBase.swift
 //  Weather
 //
 //  Created by minh duc on 2/23/19.
@@ -9,7 +9,9 @@
 import Foundation
 import CoreData
 
-final class LocalData: NSObject {
+final class Database: NSObject {
+    static let shared = Database()
+    
     private struct Constant {
         static let weather = "Weather"
         static let entity = "Location"
@@ -39,7 +41,8 @@ final class LocalData: NSObject {
         }
     }
     
-    func update(data location: Location) {
+    @discardableResult
+    func contains(_ location: Location) -> Bool {
         fetch(LocationCoreData.self).forEach {
             // update location with current place id
             if $0.placeId == location.placeId {
@@ -58,8 +61,10 @@ final class LocalData: NSObject {
                 $0.latitude = location.latitude
                 $0.longitude = location.longitude
             }
+            return false
         }
         save()
+        return true
     }
     
     func delete(data location: Location) {
@@ -73,7 +78,7 @@ final class LocalData: NSObject {
     }
     
     @discardableResult
-    func fetch<T: NSManagedObject>(_ type: T.Type) -> [T] {
+    private func fetch<T: NSManagedObject>(_ type: T.Type) -> [T] {
         do {
             guard
                 let datas = try context.fetch(T.fetchRequest()) as? [T]
@@ -85,5 +90,14 @@ final class LocalData: NSObject {
             print(error.localizedDescription)
         }
         return [T]()
+    }
+    
+    func getLocations() -> [Location] {
+        var locations = [Location]()
+        fetch(LocationCoreData.self).forEach {
+            let coordinate = Coordinate(lat: $0.latitude, lng: $0.longitude)
+            locations.append(Location(placeId: $0.placeId, coordinate: coordinate))
+        }
+        return locations
     }
 }
