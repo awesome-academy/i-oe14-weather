@@ -9,7 +9,7 @@
 import Foundation
 
 final class WeatherDataOperation: Operation {
-    private let api = APIService.share
+    private let api = APIService.shared
     private var location = Location()
     private var weatherData = WeatherData()
     

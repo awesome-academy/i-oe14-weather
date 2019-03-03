@@ -14,20 +14,14 @@ final class SearchLocationViewController: BaseTableViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     
     private let searchRepo = SearchRepository()
+    private let weatherRepo = ListCityRepository()
     private var predictions = [Prediction]()
-    weak var listCityDelegate: ListCityDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configView()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        listCityDelegate = nil
-    }
-    
-    private func configView() {
+    override func configureSubview() {
         searchBar.do {
             $0.delegate = self
             $0.becomeFirstResponder()
@@ -35,8 +29,8 @@ final class SearchLocationViewController: BaseTableViewController {
         }
     }
     
-    override func configTableView() {
-        super.configTableView()
+    override func configureTableView() {
+        super.configureTableView()
         baseTableView.do {
             $0.register(cellType: SearchLocationCell.self)
         }
@@ -69,23 +63,36 @@ extension SearchLocationViewController {
         
         let placeId = predictions[indexPath.row].placeId
         searchRepo.searchCoordinate(of: placeId) { [weak self] result in
-            guard let self = self,
-                let listCityDelegate = self.listCityDelegate
-            else { return }
+            guard let self = self else { return }
             
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     guard let data = data else { return }
-                    
                     let location = Location(placeId: placeId, coordinate: data.coordinate)
-                    DataManager.share.updateCoreData(with: location)
-                    listCityDelegate.updateData(at: location)
-                    self.dismissViewController()
+                    self.postNotification(with: location)
                 case .failed(let error):
                     self.showErrorMessage(message: error?.errorMessage)
+                    self.stopLoading()
                 }
-                self.stopLoading()
+            }
+        }
+    }
+    
+    func postNotification(with location: Location) {
+        if database.contains(location) {
+            stopLoading()
+            dismissViewController()
+        } else {
+            weatherRepo.fetchData(location: location) { [weak self] weatherData in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.notificationCenter.post(name: .weatherDataDidChange,
+                                                 object: weatherData)
+                    self.stopLoading()
+                    self.dismissViewController()
+                }
             }
         }
     }
@@ -96,23 +103,18 @@ extension SearchLocationViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchRepo.searchLocation(keyword: searchText.ascii) { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                guard let data = data else { return }
-                
-                DispatchQueue.main.async {
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    guard let data = data else { return }
                     self.predictions = data.predictions
                     self.loadingSuccess()
+                case .failed(let error):
+                    self.predictions.removeAll()
+                    self.loadingFailed(error?.errorMessage)
                 }
-            case .failed(let error):
-                self.predictions.removeAll()
-                self.loadingFailed(error?.errorMessage)
             }
         }
     }
-}
-
-// MARK: - SearchBarDelegate
-extension SearchLocationViewController: StoryboardSceneBased {
-    static let sceneStoryboard = Storyboard.main
 }

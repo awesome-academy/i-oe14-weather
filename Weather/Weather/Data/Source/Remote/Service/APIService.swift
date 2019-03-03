@@ -10,7 +10,7 @@ import ObjectMapper
 import Alamofire
 
 class APIService {
-    static let share = APIService()
+    static let shared = APIService()
     
     private lazy var sessionManager: Alamofire.SessionManager = {
         let config = URLSessionConfiguration.ephemeral
