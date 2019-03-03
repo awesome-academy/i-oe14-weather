@@ -36,11 +36,11 @@ enum ForecastCategory {
     var sizeItem: CGSize {
         switch self {
         case .daily:
-            return CGSize(width: 120, height: 120)
+            return CGSize(width: Constant.sizeDaily, height: Constant.sizeDaily)
         case .hourly:
-            return CGSize(width: 50, height: 130)
+            return CGSize(width: Constant.widthHourly, height: Constant.sizeDaily)
         case .forecastday:
-            return .zero
+            return CGSize(width: Constant.widthForecast, height: Constant.heightForecast)
         case .uv:
             return .zero
         case .humidity:
@@ -48,5 +48,14 @@ enum ForecastCategory {
         default:
             return .zero
         }
+    }
+}
+
+private extension ForecastCategory {
+    struct Constant {
+        static let sizeDaily: CGFloat = 120
+        static let widthHourly: CGFloat = 50
+        static let heightForecast: CGFloat = 290
+        static let widthForecast: CGFloat = (Screen.width - 5) / 7
     }
 }

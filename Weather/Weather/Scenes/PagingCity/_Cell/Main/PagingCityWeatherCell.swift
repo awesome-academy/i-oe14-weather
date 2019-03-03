@@ -68,7 +68,7 @@ extension PagingCityWeatherCell: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return Constant.dailyHeightRow
         case 1:
-            return Constant.hourlyHeightRow
+            return Constant.dailyHeightRow
         case 2:
             return Constant.forecastdayHeightRow
         case 3:
@@ -101,10 +101,9 @@ private extension PagingCityWeatherCell {
         static let maxRow = 5
         static let maxAlpha: CGFloat = 1
         static let minHeightHeader: CGFloat = 0
-        static let dailyHeightRow: CGFloat = 160
-        static let hourlyHeightRow: CGFloat = 170
-        static let humidityHeightRow: CGFloat = 300
-        static let forecastdayHeightRow: CGFloat = 250
+        static let dailyHeightRow: CGFloat = 200
+        static let humidityHeightRow: CGFloat = 250
+        static let forecastdayHeightRow: CGFloat = 360
         static let tableHeaderView = UIView(width: 0, height: Screen.height / 2)
     }
     

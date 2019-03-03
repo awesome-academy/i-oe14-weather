@@ -22,8 +22,10 @@ class BaseTableViewCell: UITableViewCell, NibReusable {
     }
     
     func configureCollectionView() {
-        baseCollectionView.dataSource = self
-        baseCollectionView.delegate = self
+        baseCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+        }
     }
     
     func setContentCell(data: WeatherData, categories: ForecastCategory) {
@@ -40,6 +42,10 @@ extension BaseTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
         switch currentCategories {
         case .daily:
             return weatherData.conditions.count
+        case .hourly:
+            return weatherData.hourlyWeather.count
+        case .forecastday:
+            return weatherData.forecastdayWeather.count / 2
         default:
             return weatherData.hourlyWeather.count
         }
@@ -50,6 +56,6 @@ extension BaseTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.zero
+        return currentCategories.sizeItem
     }
 }

@@ -27,6 +27,16 @@ final class WeatherData: NSObject {
                 conditions.sunrise.pm(conditions.timezone)]
     }
     
+    var temperature: (min: Double, max: Double) {
+        let max = forecastdayWeather.max {
+            $0.maxTemperature < $1.maxTemperature
+        }
+        let min = forecastdayWeather.max {
+            $0.minTemperature < $1.minTemperature
+        }
+        return (min?.minTemperature ?? 0, max?.maxTemperature ?? 0)
+    }
+    
     var hasData: Bool {
         return dailyWeather.count > 0 && hourlyWeather.count > 0 && forecastdayWeather.count > 0
     }
