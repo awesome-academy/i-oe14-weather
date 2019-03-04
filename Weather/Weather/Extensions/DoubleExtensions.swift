@@ -12,4 +12,24 @@ extension Double {
     var celsius: String {
         return String(format: "%g°", self.rounded())
     }
+    
+    var formated: String {
+        return String(format: "%g", self.rounded())
+    }
+    
+    var hPa: String {
+        return self.formated + " mb"
+    }
+    
+    var percent: String {
+        return self.formated + "%"
+    }
+    
+    var km: String {
+        return self.formated + " km"
+    }
+    
+    var ms: String {
+        return self.formated + " m/s"
+    }
 }

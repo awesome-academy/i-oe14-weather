@@ -48,7 +48,7 @@ final class StartScreenViewController: BaseViewController {
         configLocationView(false)
         push(after: .now())
     }
-    
+
     private func push(after timeOut: DispatchTime) {
         DispatchQueue.main.asyncAfter(deadline: timeOut) {
             self.push(ListCityWeatherViewController.self)
