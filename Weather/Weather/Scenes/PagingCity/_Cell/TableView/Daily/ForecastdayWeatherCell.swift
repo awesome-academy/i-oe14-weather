@@ -35,16 +35,10 @@ extension ForecastdayWeatherCell {
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ForecastHourlyWeatherCell.self)
             cell.setContentCell(with: weatherData.hourlyWeather[indexPath.row])
             return cell
-        case .forecastday:
+        default:
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ForecastdayWeatherCollectionCell.self)
             cell.setContentCell(with: weatherData.forecastdayWeather[indexPath.row], temperature: weatherData.temperature)
             return cell
-        case .uv:
-            return UICollectionViewCell()
-        case .humidity:
-            return UICollectionViewCell()
-        default:
-            return UICollectionViewCell()
         }
     }
     

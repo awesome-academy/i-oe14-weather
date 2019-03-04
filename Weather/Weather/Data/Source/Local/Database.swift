@@ -61,6 +61,7 @@ final class Database: NSObject {
                 $0.latitude = location.latitude
                 $0.longitude = location.longitude
             }
+            save()
             return false
         }
         save()
