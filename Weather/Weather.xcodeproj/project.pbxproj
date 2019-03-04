@@ -22,6 +22,8 @@
 		221555BE2222927900D11E42 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221555BD2222927900D11E42 /* CurrentWeather.swift */; };
 		2218C905222B6EEA004982D8 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2218C904222B6EEA004982D8 /* DateFormat.swift */; };
 		221E9E1E2227760000FEFEB2 /* PagingCityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E9E1D2227760000FEFEB2 /* PagingCityWeatherViewController.swift */; };
+		222889CC222BC6BD00F66B40 /* ForecastHourlyWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222889CA222BC6BD00F66B40 /* ForecastHourlyWeatherCell.swift */; };
+		222889CD222BC6BD00F66B40 /* ForecastHourlyWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222889CB222BC6BD00F66B40 /* ForecastHourlyWeatherCell.xib */; };
 		223DFB712223C803003E36F3 /* ListCityWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223DFB702223C803003E36F3 /* ListCityWeatherViewController.swift */; };
 		223DFB7A2223D5CD003E36F3 /* ListCityWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223DFB782223D5CD003E36F3 /* ListCityWeatherCell.swift */; };
 		223DFB7B2223D5CD003E36F3 /* ListCityWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223DFB792223D5CD003E36F3 /* ListCityWeatherCell.xib */; };
@@ -91,6 +93,8 @@
 		221555BD2222927900D11E42 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		2218C904222B6EEA004982D8 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		221E9E1D2227760000FEFEB2 /* PagingCityWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingCityWeatherViewController.swift; sourceTree = "<group>"; };
+		222889CA222BC6BD00F66B40 /* ForecastHourlyWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastHourlyWeatherCell.swift; sourceTree = "<group>"; };
+		222889CB222BC6BD00F66B40 /* ForecastHourlyWeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastHourlyWeatherCell.xib; sourceTree = "<group>"; };
 		223DFB702223C803003E36F3 /* ListCityWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCityWeatherViewController.swift; sourceTree = "<group>"; };
 		223DFB782223D5CD003E36F3 /* ListCityWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCityWeatherCell.swift; sourceTree = "<group>"; };
 		223DFB792223D5CD003E36F3 /* ListCityWeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCityWeatherCell.xib; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 		220C2076222AD39E00079E7E /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				222889C5222BC60600F66B40 /* Hourly */,
 				220C207D222ADA0400079E7E /* Daily */,
 				220C2077222AD4A400079E7E /* BaseCollectionViewCell.swift */,
 			);
@@ -193,6 +198,15 @@
 				221E9E1D2227760000FEFEB2 /* PagingCityWeatherViewController.swift */,
 			);
 			path = PagingCity;
+			sourceTree = "<group>";
+		};
+		222889C5222BC60600F66B40 /* Hourly */ = {
+			isa = PBXGroup;
+			children = (
+				222889CA222BC6BD00F66B40 /* ForecastHourlyWeatherCell.swift */,
+				222889CB222BC6BD00F66B40 /* ForecastHourlyWeatherCell.xib */,
+			);
+			path = Hourly;
 			sourceTree = "<group>";
 		};
 		223DFB722223C808003E36F3 /* ListCityWeather */ = {
@@ -608,6 +622,7 @@
 				220C207C222AD9FA00079E7E /* DailyWeatherCell.xib in Resources */,
 				22878D58221BB05900ABFCBC /* SearchLocationCell.xib in Resources */,
 				223DFB7B2223D5CD003E36F3 /* ListCityWeatherCell.xib in Resources */,
+				222889CD222BC6BD00F66B40 /* ForecastHourlyWeatherCell.xib in Resources */,
 				22A64F7122156FC8003266BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,6 +733,7 @@
 				22B790F42226D4D00084B02A /* NotificationExtensions.swift in Sources */,
 				22CBAAB6221AA65F00BF31B1 /* Constants.swift in Sources */,
 				22878D54221BAFEF00ABFCBC /* SearchLocationViewController.swift in Sources */,
+				222889CC222BC6BD00F66B40 /* ForecastHourlyWeatherCell.swift in Sources */,
 				22BC7BFD2225684B007F4483 /* DoubleExtensions.swift in Sources */,
 				220C2073222AC5AD00079E7E /* BaseTableViewCell.swift in Sources */,
 				2242A2A1222905530089764E /* ForecastConditionWeatherCell.swift in Sources */,

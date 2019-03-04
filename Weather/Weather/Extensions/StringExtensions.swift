@@ -25,6 +25,10 @@ extension String {
         return convert(self, format: (.yyyyMMddHH, .ddMMyyyy), timeZone: timeZone)
     }
     
+    func hh(_ timeZone: String) -> String {
+        return convert(self, format: (.yyyyMMddHH, .HH), timeZone: timeZone) + "h"
+    }
+    
     private func convert(_ date: String, format: (in: DateFormat, out: DateFormat), timeZone: String) -> String {
         let inFormatter = DateFormatter()
         inFormatter.timeZone = TimeZone(secondsFromGMT: 0)

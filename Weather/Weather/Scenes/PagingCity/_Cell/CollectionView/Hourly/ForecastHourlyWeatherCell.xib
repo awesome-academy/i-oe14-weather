@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ForecastHourlyWeatherCell" customModule="Weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="83" height="178"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="83" height="178"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="go8-jY-t0J">
+                        <rect key="frame" x="1.5" y="1.5" width="80" height="175"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7Y-XE-MoY">
+                                <rect key="frame" x="28" y="5" width="24.5" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain-snow-night" translatesAutoresizingMaskIntoConstraints="NO" id="G22-Iw-eHF">
+                                <rect key="frame" x="20" y="70" width="40" height="35"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24℃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rY-9L-SD7">
+                                <rect key="frame" x="22" y="151" width="36" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="a7Y-XE-MoY" firstAttribute="top" secondItem="go8-jY-t0J" secondAttribute="top" constant="5" id="6WB-sl-VWG"/>
+                            <constraint firstItem="G22-Iw-eHF" firstAttribute="centerY" secondItem="go8-jY-t0J" secondAttribute="centerY" id="AE7-Iv-yjA"/>
+                            <constraint firstItem="G22-Iw-eHF" firstAttribute="width" secondItem="go8-jY-t0J" secondAttribute="width" multiplier="1/2" id="WQk-sy-6ne"/>
+                            <constraint firstItem="G22-Iw-eHF" firstAttribute="centerX" secondItem="go8-jY-t0J" secondAttribute="centerX" id="WSd-1C-Qcc"/>
+                            <constraint firstItem="G22-Iw-eHF" firstAttribute="height" secondItem="go8-jY-t0J" secondAttribute="height" multiplier="1/5" id="Zb1-Ia-k1G"/>
+                            <constraint firstItem="2rY-9L-SD7" firstAttribute="centerX" secondItem="go8-jY-t0J" secondAttribute="centerX" id="mFp-Qz-3ya"/>
+                            <constraint firstAttribute="bottom" secondItem="2rY-9L-SD7" secondAttribute="bottom" constant="5" id="uL6-rm-G8E"/>
+                            <constraint firstItem="a7Y-XE-MoY" firstAttribute="centerX" secondItem="go8-jY-t0J" secondAttribute="centerX" id="xqH-kC-Y11"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="go8-jY-t0J" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1.5" id="5aa-3J-MSq"/>
+                <constraint firstItem="go8-jY-t0J" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1.5" id="LVI-Al-xFq"/>
+                <constraint firstAttribute="bottom" secondItem="go8-jY-t0J" secondAttribute="bottom" constant="1.5" id="Urd-UR-gUW"/>
+                <constraint firstAttribute="trailing" secondItem="go8-jY-t0J" secondAttribute="trailing" constant="1.5" id="tnp-Y1-Vyt"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="83" height="178"/>
+            <connections>
+                <outlet property="conditionImageView" destination="G22-Iw-eHF" id="xSE-i4-PvI"/>
+                <outlet property="temperatureLabel" destination="a7Y-XE-MoY" id="SL2-EY-taH"/>
+                <outlet property="timeLabel" destination="2rY-9L-SD7" id="1Av-iw-TGn"/>
+            </connections>
+            <point key="canvasLocation" x="159.19999999999999" y="212.29385307346328"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="rain-snow-night" width="30" height="32"/>
+    </resources>
+</document>

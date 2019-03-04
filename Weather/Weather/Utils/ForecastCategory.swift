@@ -38,15 +38,15 @@ enum ForecastCategory {
         case .daily:
             return CGSize(width: 120, height: 120)
         case .hourly:
-            return CGSize.zero
+            return CGSize(width: 50, height: 130)
         case .forecastday:
-            return CGSize.zero
+            return .zero
         case .uv:
-            return CGSize.zero
+            return .zero
         case .humidity:
-            return CGSize.zero
+            return .zero
         default:
-            return CGSize.zero
+            return .zero
         }
     }
 }

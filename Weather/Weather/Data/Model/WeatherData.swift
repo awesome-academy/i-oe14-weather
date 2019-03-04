@@ -16,7 +16,7 @@ final class WeatherData: NSObject {
     
     var conditions: [String] {
         guard let conditions = dailyWeather.first else {
-            return [String]()
+            return []
         }
         return [Double(conditions.humidity).percent,
                 conditions.uv.formated,

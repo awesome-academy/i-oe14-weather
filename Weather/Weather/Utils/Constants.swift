@@ -25,7 +25,7 @@ struct Constants {
     static let blank = ""
     static let warning = "Warning"
     static let detail = "DETAIL"
-    static let hourly = "NEXT 24 HOURS"
+    static let hourly = "NEXT 16 HOURS"
     static let forecastday = "NEXT 7 DAYS"
     static let uvcondition = "UV index"
     static let hudimity = "HUMIDITY"
