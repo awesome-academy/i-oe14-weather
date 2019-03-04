@@ -29,6 +29,10 @@ extension String {
         return convert(self, format: (.yyyyMMddHH, .HH), timeZone: timeZone) + "h"
     }
     
+    func dayOfWeek(_ timeZone: String) -> String {
+        return convert(self, format: (.yyyyMMdd, .EEE), timeZone: timeZone)
+    }
+    
     private func convert(_ date: String, format: (in: DateFormat, out: DateFormat), timeZone: String) -> String {
         let inFormatter = DateFormatter()
         inFormatter.timeZone = TimeZone(secondsFromGMT: 0)

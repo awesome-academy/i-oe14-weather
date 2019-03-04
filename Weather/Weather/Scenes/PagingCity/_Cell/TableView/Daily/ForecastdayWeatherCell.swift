@@ -15,8 +15,11 @@ final class ForecastdayWeatherCell: BaseTableViewCell {
     
     override func configureCollectionView() {
         super.configureCollectionView()
-        baseCollectionView.register(cellType: DailyWeatherCell.self)
-        baseCollectionView.register(cellType: ForecastHourlyWeatherCell.self)
+        baseCollectionView.do {
+            $0.register(cellType: DailyWeatherCell.self)
+            $0.register(cellType: ForecastHourlyWeatherCell.self)
+            $0.register(cellType: ForecastdayWeatherCollectionCell.self)
+        }
     }
 }
 
@@ -33,7 +36,9 @@ extension ForecastdayWeatherCell {
             cell.setContentCell(with: weatherData.hourlyWeather[indexPath.row])
             return cell
         case .forecastday:
-            return UICollectionViewCell()
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ForecastdayWeatherCollectionCell.self)
+            cell.setContentCell(with: weatherData.forecastdayWeather[indexPath.row], temperature: weatherData.temperature)
+            return cell
         case .uv:
             return UICollectionViewCell()
         case .humidity:
