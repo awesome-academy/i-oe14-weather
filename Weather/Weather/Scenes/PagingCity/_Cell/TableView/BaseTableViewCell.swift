@@ -46,6 +46,8 @@ extension BaseTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
             return weatherData.hourlyWeather.count
         case .forecastday:
             return weatherData.forecastdayWeather.count / 2
+        case .uv:
+            return weatherData.hourlyWeather.count
         default:
             return weatherData.hourlyWeather.count
         }

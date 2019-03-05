@@ -34,4 +34,7 @@ extension UIColor {
     static let visibility = UIColor(hex: 0x80C2AB)
     static let sunrise = UIColor(hex: 0xFBED57)
     static let sunset = UIColor(hex: 0xFE9928)
+    static let minUV = UIColor(hex: 0xFFAA80)
+    static let mediumUV = UIColor(hex: 0xFF751A)
+    static let maxUV = UIColor(hex: 0xD34831)
 }

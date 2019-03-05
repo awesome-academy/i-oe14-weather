@@ -17,6 +17,12 @@ extension UIView {
         layer.cornerRadius = ratio * bounds.width
     }
     
+    func setCornerRadius(_ radius: CGFloat, border width: CGFloat = 0, color: UIColor = .white) {
+        layer.cornerRadius = radius
+        layer.borderWidth = width
+        layer.borderColor = color.cgColor
+    }
+    
     func dropShadow(_ color: UIColor, offSet: CGSize, opacity: Float = 0, radius: CGFloat = 0) {
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offSet

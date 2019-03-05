@@ -42,9 +42,9 @@ enum ForecastCategory {
         case .forecastday:
             return CGSize(width: Constant.widthForecast, height: Constant.heightForecast)
         case .uv:
-            return .zero
+            return CGSize(width: Constant.widthUV, height: Constant.heightUV)
         case .humidity:
-            return .zero
+            return CGSize(width: Constant.widthUV, height: Constant.heightUV)
         default:
             return .zero
         }
@@ -56,6 +56,8 @@ private extension ForecastCategory {
         static let sizeDaily: CGFloat = 120
         static let widthHourly: CGFloat = 50
         static let heightForecast: CGFloat = 290
+        static let widthUV: CGFloat = 35
+        static let heightUV: CGFloat = 140
         static let widthForecast: CGFloat = (Screen.width - 5) / 7
     }
 }

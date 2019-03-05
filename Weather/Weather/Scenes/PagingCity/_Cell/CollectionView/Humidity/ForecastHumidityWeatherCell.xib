@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ForecastHumidityWeatherCell" customModule="Weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="140"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15h" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIy-qr-ayu">
+                        <rect key="frame" x="0.0" y="115" width="50" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="eqc-q2-cRU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5Y-vk-ojI">
+                        <rect key="frame" x="17.5" y="95" width="15" height="15"/>
+                        <color key="backgroundColor" red="0.15294117647058825" green="0.070588235294117646" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="8z2-Pc-LxQ"/>
+                            <constraint firstAttribute="height" constant="15" id="9Kj-St-3fw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="pIy-qr-ayu" secondAttribute="bottom" id="Lk7-uD-b4m"/>
+                <constraint firstAttribute="trailing" secondItem="pIy-qr-ayu" secondAttribute="trailing" id="jw2-OS-IgF"/>
+                <constraint firstItem="h5Y-vk-ojI" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="lUQ-Z9-VII"/>
+                <constraint firstItem="pIy-qr-ayu" firstAttribute="top" secondItem="h5Y-vk-ojI" secondAttribute="bottom" constant="5" id="tPC-Y4-PoW"/>
+                <constraint firstItem="pIy-qr-ayu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wJd-MF-1SZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="50" height="213"/>
+            <connections>
+                <outlet property="chartView" destination="h5Y-vk-ojI" id="rvP-oj-LyQ"/>
+                <outlet property="dateLabel" destination="pIy-qr-ayu" id="MYg-06-6Aq"/>
+                <outlet property="heightContraint" destination="tPC-Y4-PoW" id="mK3-Y0-YWg"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="227.58620689655174"/>
+        </collectionViewCell>
+    </objects>
+</document>

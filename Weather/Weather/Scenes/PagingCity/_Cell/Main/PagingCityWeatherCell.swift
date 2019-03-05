@@ -102,7 +102,7 @@ private extension PagingCityWeatherCell {
         static let maxAlpha: CGFloat = 1
         static let minHeightHeader: CGFloat = 0
         static let dailyHeightRow: CGFloat = 200
-        static let humidityHeightRow: CGFloat = 250
+        static let humidityHeightRow: CGFloat = 220
         static let forecastdayHeightRow: CGFloat = 360
         static let tableHeaderView = UIView(width: 0, height: Screen.height / 2)
     }
