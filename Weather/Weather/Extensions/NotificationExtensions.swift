@@ -9,6 +9,7 @@
 import Foundation
 
 extension NSNotification.Name {
-    static let deleteItemAtIndexPath = NSNotification.Name.init("deleteItemAtIndexPath")
-    static let weatherDataDidChange = NSNotification.Name.init("weatherDataDidChange")
+    static let deleteItemAtIndexPath = NSNotification.Name("deleteItemAtIndexPath")
+    static let weatherDataDidChange = NSNotification.Name("weatherDataDidChange")
+    static let presentViewController = NSNotification.Name("presentViewController")
 }

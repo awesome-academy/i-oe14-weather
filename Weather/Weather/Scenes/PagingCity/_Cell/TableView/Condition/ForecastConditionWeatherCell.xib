@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzm-e7-eSg">
-                        <rect key="frame" x="15" y="50" width="340" height="140.5"/>
+                        <rect key="frame" x="15" y="60" width="340" height="140.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-69-Lff">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="110.5"/>
@@ -138,10 +138,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kK-kb-Q57" userLabel="Bot View">
-                        <rect key="frame" x="0.0" y="190.5" width="365" height="30"/>
+                        <rect key="frame" x="0.0" y="200.5" width="365" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="VPu-nr-Ndc"/>
+                            <constraint firstAttribute="height" constant="20" id="VPu-nr-Ndc"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -155,7 +155,7 @@
                     <constraint firstAttribute="bottom" secondItem="3kK-kb-Q57" secondAttribute="bottom" id="p10-Td-rRU"/>
                     <constraint firstAttribute="trailing" secondItem="ZPv-xb-rsB" secondAttribute="trailing" id="tpE-U9-QGv"/>
                     <constraint firstItem="ZPv-xb-rsB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vxW-hA-EWr"/>
-                    <constraint firstItem="xzm-e7-eSg" firstAttribute="top" secondItem="ZPv-xb-rsB" secondAttribute="bottom" constant="10" id="ynF-Ke-kLJ"/>
+                    <constraint firstItem="xzm-e7-eSg" firstAttribute="top" secondItem="ZPv-xb-rsB" secondAttribute="bottom" constant="20" id="ynF-Ke-kLJ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.1450980392" green="0.19215686269999999" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

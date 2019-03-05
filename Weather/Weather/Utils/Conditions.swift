@@ -49,7 +49,7 @@ enum Conditions {
         case .uv:
             return Constants.uvcondition
         case .humidity:
-            return Constants.hudimity.lowercased()
+            return Constants.hudimity.lowercased().capitalized
         case .wind:
             return Constants.windspeed
         }
