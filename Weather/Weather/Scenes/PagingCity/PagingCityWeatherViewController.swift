@@ -9,11 +9,8 @@
 import UIKit
 import Reusable
 
-final class PagingCityWeatherViewController: BaseViewController {
+final class PagingCityWeatherViewController: BaseCollectionViewController {
     @IBOutlet private weak var pageControl: UIPageControl!
-    @IBOutlet private weak var weatherCollectionView: UICollectionView!
-    
-    var weatherData = [WeatherData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +18,21 @@ final class PagingCityWeatherViewController: BaseViewController {
     }
 
     override func addObserver() {
-        notificationCenter.addObserver(self, selector: #selector(weatherDataDidChange), name: .weatherDataDidChange, object: nil)
+        super.addObserver()
         notificationCenter.addObserver(self, selector: #selector(presentViewController), name: .presentViewController, object: nil)
+    }
+    
+    override func configureCollectionView() {
+        super.configureCollectionView()
+        baseCollectionView.register(cellType: PagingCityWeatherCell.self)
+        pageControl.numberOfPages = weatherData.count
+    }
+    
+    override func weatherDataDidChange(_ notification: Notification) {
+        super.weatherDataDidChange(notification)
+        DispatchQueue.main.async {
+            self.pageControl.numberOfPages = self.weatherData.count
+        }
     }
     
     @IBAction private func handleBackButton(_ sender: UIButton) {
@@ -31,43 +41,16 @@ final class PagingCityWeatherViewController: BaseViewController {
 }
 
 // MARK: - UICollectionViewDataSource + UICollectionViewFlowLayout
-extension PagingCityWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherData.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+extension PagingCityWeatherViewController {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PagingCityWeatherCell.self)
         cell.configureCell(withData: weatherData[indexPath.row])
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
 }
 
 // MARK: - PagingCityWeatherViewController
 private extension PagingCityWeatherViewController {
-    func configureCollectionView() {
-        weatherCollectionView.do {
-            $0.register(cellType: PagingCityWeatherCell.self)
-            $0.dataSource = self
-            $0.delegate = self
-        }
-        
-        pageControl.do {
-            $0.numberOfPages = weatherData.count
-        }
-    }
-    
-    @objc func weatherDataDidChange(_ notification: Notification) {
-        if let data = notification.object as? WeatherData {
-            weatherData.append(data)
-            weatherCollectionView.reloadData()
-        }
-    }
-    
     @objc func presentViewController(_ notification: Notification) {
         DispatchQueue.main.async { [weak self] in
             if let self = self,
@@ -81,7 +64,7 @@ private extension PagingCityWeatherViewController {
 }
 
 // MARK: - ScrollViewDelegate
-extension PagingCityWeatherViewController: UIScrollViewDelegate {
+extension PagingCityWeatherViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentPage = Int(scrollView.contentOffset.x / Screen.width)
         pageControl.currentPage = currentPage

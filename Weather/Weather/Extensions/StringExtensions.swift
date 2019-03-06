@@ -13,6 +13,10 @@ extension String {
         return self.folding(options: .diacriticInsensitive, locale: .current)
     }
     
+    var question: String {
+        return self + " ?"
+    }
+    
     func am(_ timeZone: String) -> String {
         return convert(self, format: (.HHmm, .hhmm), timeZone: timeZone) + " AM"
     }

@@ -9,6 +9,7 @@
 import UIKit
 import Reusable
 import MBProgressHUD
+import ObjectMapper
 
 class BaseViewController: UIViewController {
     let notificationCenter = NotificationCenter.default
@@ -29,14 +30,15 @@ class BaseViewController: UIViewController {
     
     func configureSubview() { }
     
-    @discardableResult
-    func push<T: BaseViewController>(_ viewController: T.Type) -> T? {
-        guard let navigationController = navigationController else {
-            return nil
-        }
-        let controller = viewController.instantiate()
-        navigationController.pushViewController(controller, animated: true)
-        return controller
+    func push<T: BaseViewController>(_ viewController: T, animated: Bool = true) {
+        guard let navigationController = navigationController else { return }
+        navigationController.pushViewController(viewController, animated: animated)
+    }
+    
+    func push<T: BaseCollectionViewController>(_ viewController: T.Type, data: [WeatherData], animated: Bool = true) {
+        let viewController = T.instantiate()
+        viewController.weatherData = data
+        push(viewController, animated: animated)
     }
     
     func popViewController() {
@@ -51,11 +53,15 @@ class BaseViewController: UIViewController {
     }
     
     func startLoading() {
-        MBProgressHUD.showAdded(to: view, animated: true)
+        DispatchQueue.main.async {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
     }
     
     func stopLoading() {
-        MBProgressHUD.hide(for: view, animated: true)
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
 }
 

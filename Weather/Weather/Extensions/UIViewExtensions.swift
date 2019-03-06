@@ -37,3 +37,9 @@ extension UISearchBar {
         textField?.textColor = color
     }
 }
+
+extension UITableView {
+    func reloadContent() {
+        self.contentOffset.y = 0
+    }
+}

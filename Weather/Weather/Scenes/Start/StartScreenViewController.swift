@@ -16,9 +16,11 @@ final class StartScreenViewController: BaseViewController {
     private struct Constant {
         static let distance: CLLocationDistance = 5
         static let placeId = "placeId"
-        static let timeOut: DispatchTime = .now() + 1
+        static let timeOut: DispatchTime = .now() + 0.5
     }
-
+    
+    private var pushedViewController = false
+    private let weatherRepos = ListCityRepository()
     private let locationManager = CLLocationManager().then {
         $0.desiredAccuracy = kCLLocationAccuracyKilometer
         $0.distanceFilter = Constant.distance  // In kilometer.
@@ -36,8 +38,35 @@ final class StartScreenViewController: BaseViewController {
     
     private func updateData(with location: Location?) {
         configLocationView(false)
-        guard let location = location else { return }
-        database.contains(location)
+        if let location = location, !pushedViewController {
+            fetchData(at: location)
+            database.insert(location)
+        } else if !pushedViewController {
+            push(after: Constant.timeOut)
+        }
+    }
+    
+    private func fetchData(at location: Location) {
+        pushedViewController = true
+        weatherRepos.fetchData(location: location) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    guard let data = data else { return }
+                    self.push(ListCityWeatherViewController.self, data: [data])
+                case .failed(let error):
+                    self.showAlertView(title: Constants.warning,
+                                       message: error?.errorMessage,
+                                       cancelButton: Constants.retry,
+                                       type: .alert,
+                    cancelAction: {
+                        self.pushedViewController = false
+                        self.startReceivingLocationChanges()
+                    })
+                }
+            }
+        }
     }
     
     @IBAction private func handleLocationButton(_ sender: UIButton) {
@@ -51,7 +80,7 @@ final class StartScreenViewController: BaseViewController {
 
     private func push(after timeOut: DispatchTime) {
         DispatchQueue.main.asyncAfter(deadline: timeOut) {
-            self.push(ListCityWeatherViewController.self)
+            self.push(ListCityWeatherViewController.instantiate())
         }
     }
 }
@@ -62,10 +91,8 @@ extension StartScreenViewController: CLLocationManagerDelegate {
         switch status {
         case .restricted, .denied:
             updateData(with: nil)
-            push(after: Constant.timeOut)
         case .authorizedWhenInUse:
             startReceivingLocationChanges()
-            push(after: Constant.timeOut)
         case .notDetermined, .authorizedAlways:
             configLocationView(true)
         }
@@ -79,7 +106,7 @@ extension StartScreenViewController: CLLocationManagerDelegate {
             return locationManager.stopUpdatingLocation()
         }
         let coordinate = Coordinate(lat: latitude, lng: longitude)
-        let location = Location(placeId: Constant.placeId, coordinate: coordinate)
+        let location = Location(Constant.placeId, coordinate: coordinate)
         
         locationManager.stopUpdatingLocation()
         updateData(with: location) // Save in core data

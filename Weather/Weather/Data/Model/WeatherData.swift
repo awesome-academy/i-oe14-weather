@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-final class WeatherData: NSObject {
+final class WeatherData: NSObject, Mappable {
     var location = Location()
     var dailyWeather = [ForecastWeather]()
     var hourlyWeather = [ForecastWeather]()
@@ -42,12 +43,13 @@ final class WeatherData: NSObject {
     
     var temperature: (min: Double, max: Double) {
         let max = forecastdayWeather.max {
-            $0.maxTemperature < $1.maxTemperature
+            return $0.maxTemp < $1.maxTemp
         }
         let min = forecastdayWeather.max {
-            $0.minTemperature < $1.minTemperature
+            return $0.minTemp < $1.minTemp
         }
-        return (min?.minTemperature ?? 0, max?.maxTemperature ?? 0)
+        return (min?.minTemp.rounded() ?? 0,
+                max?.maxTemp.rounded() ?? 0)
     }
     
     var hasData: Bool {
@@ -57,4 +59,8 @@ final class WeatherData: NSObject {
     override init() {
         super.init()
     }
+    
+    init?(map: Map) { }
+    
+    func mapping(map: Map) { }
 }

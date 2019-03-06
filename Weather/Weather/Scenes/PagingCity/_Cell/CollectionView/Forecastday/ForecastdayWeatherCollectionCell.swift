@@ -22,27 +22,37 @@ final class ForecastdayWeatherCollectionCell: BaseCollectionViewCell {
     }
     
     override func configureSubview() {
-        chartView.do {
-            $0.scaleCornerRadius(0.5)
-        }
+        chartView.scaleCornerRadius(0.5)
     }
     
     func setContentCell(with data: ForecastWeather, temperature: (min: Double, max: Double)) {
         let weather = Weather(data.weather.icon)
         weatherImageView.image = weather.smallImage
-        maxTempLabel.text = data.maxTemperature.celsius
-        minTempLabel.text = data.minTemperature.celsius
+        maxTempLabel.text = data.maxTemp.celsius
+        minTempLabel.text = data.minTemp.celsius
         dayOfWeekLabel.text = data.datetime.dayOfWeek(data.timezone)
         
-        let ratioMaxTemp = data.maxTemperature.rounded() / temperature.max.rounded()
-        let ratioMinTemp = data.minTemperature.rounded() / temperature.min.rounded()
-        topContraint.constant = CGFloat(Constant.heightChart - (ratioMaxTemp * Constant.heightChart))
-        botContraint.constant = CGFloat(Constant.heightChart - (ratioMinTemp * Constant.heightChart))
+        var maxRatio: Double = 0
+        var minRatio: Double = 0
+        
+        if data.maxTemp < 0 || data.minTemp < 0 {
+            maxRatio = temperature.max >= 0 ? data.maxTemp / (temperature.max - data.maxTemp * 2) : temperature.max / data.maxTemp
+            minRatio = temperature.min >= 0 ? data.minTemp / (temperature.min - data.minTemp * 2) : temperature.min / data.minTemp
+            
+            maxRatio = min(1, maxRatio < 0 ? -maxRatio : maxRatio)
+            minRatio = min(1, minRatio < 0 ? -minRatio : minRatio)
+        } else {
+            maxRatio = data.maxTemp / temperature.max
+            minRatio = data.minTemp / temperature.min
+        }
+        topContraint.constant = min(Constant.minHeight, Constant.maxHeight - (CGFloat(maxRatio) * Constant.maxHeight))
+        botContraint.constant = min(Constant.minHeight, Constant.maxHeight - (CGFloat(minRatio) * Constant.maxHeight))
     }
 }
 
 private extension ForecastdayWeatherCollectionCell {
     struct Constant {
-        static let heightChart: Double = 70
+        static let maxHeight: CGFloat = 70
+        static let minHeight: CGFloat = 60
     }
 }

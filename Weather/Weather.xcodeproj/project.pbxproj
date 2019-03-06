@@ -86,6 +86,7 @@
 		22D6E67D2224DD3900A2CE60 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6E67C2224DD3900A2CE60 /* Storyboard.swift */; };
 		22D6E685222517B800A2CE60 /* WeatherDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6E684222517B800A2CE60 /* WeatherDataOperation.swift */; };
 		22D6E687222518CA00A2CE60 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6E686222518CA00A2CE60 /* WeatherData.swift */; };
+		22D984F822314C560051C9CC /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D984F722314C560051C9CC /* BaseCollectionViewController.swift */; };
 		22FE6CA9222A22FC00DE4256 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE6CA8222A22FC00DE4256 /* BaseViewController.swift */; };
 		CCBE0271B6EB38D8DF0BC684 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDDC391030D6B8C5500CC8 /* Pods_Weather.framework */; };
 /* End PBXBuildFile section */
@@ -172,6 +173,7 @@
 		22D6E67C2224DD3900A2CE60 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		22D6E684222517B800A2CE60 /* WeatherDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataOperation.swift; sourceTree = "<group>"; };
 		22D6E686222518CA00A2CE60 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		22D984F722314C560051C9CC /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
 		22FE6CA8222A22FC00DE4256 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		52FDDC391030D6B8C5500CC8 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD87F3A4E379621E7D7B473 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 			children = (
 				22A43BE7221C2A500085DD93 /* BaseTableViewController.swift */,
 				22FE6CA8222A22FC00DE4256 /* BaseViewController.swift */,
+				22D984F722314C560051C9CC /* BaseCollectionViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -675,6 +678,11 @@
 				TargetAttributes = {
 					22A64F6722156FC8003266BA = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -795,6 +803,7 @@
 				22CE2D2B222D3CC40070F960 /* ForecastUVWeatherCell.swift in Sources */,
 				22878D5B221BB98E00ABFCBC /* SearchRepository.swift in Sources */,
 				2241C56F221A4CD4004EC5B3 /* BaseRequest.swift in Sources */,
+				22D984F822314C560051C9CC /* BaseCollectionViewController.swift in Sources */,
 				2218C905222B6EEA004982D8 /* DateFormat.swift in Sources */,
 				221555BC222284CD00D11E42 /* ListCityRepository.swift in Sources */,
 				2280CDAB221E3F2F00F7E5DF /* Coordinate.swift in Sources */,
@@ -996,17 +1005,20 @@
 			baseConfigurationReference = 7D1A436998B7728515B0D3AD /* Pods-Weather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X2JYAUGN87;
 				INFOPLIST_FILE = "$(SRCROOT)/Weather/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = swift.duc.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1015,17 +1027,20 @@
 			baseConfigurationReference = 6DD87F3A4E379621E7D7B473 /* Pods-Weather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X2JYAUGN87;
 				INFOPLIST_FILE = "$(SRCROOT)/Weather/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = swift.duc.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

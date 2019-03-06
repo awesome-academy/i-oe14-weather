@@ -40,12 +40,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/03/2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg4-SV-G0U">
-                                        <rect key="frame" x="99.5" y="263.5" width="82" height="19"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -53,24 +47,30 @@
                                     <constraint firstItem="S9G-sc-Ajw" firstAttribute="top" secondItem="RC1-NX-Dah" secondAttribute="bottom" constant="15" id="0qr-Gf-B5z"/>
                                     <constraint firstItem="tSd-uO-kQb" firstAttribute="centerX" secondItem="wGf-Bs-ouz" secondAttribute="centerX" id="9dJ-K2-pHb"/>
                                     <constraint firstItem="tSd-uO-kQb" firstAttribute="top" secondItem="wGf-Bs-ouz" secondAttribute="top" constant="20" id="FQU-i8-ryP"/>
-                                    <constraint firstItem="Xg4-SV-G0U" firstAttribute="top" secondItem="S9G-sc-Ajw" secondAttribute="bottom" constant="15" id="GXI-zd-zlG"/>
                                     <constraint firstItem="RC1-NX-Dah" firstAttribute="top" secondItem="tSd-uO-kQb" secondAttribute="bottom" constant="15" id="XmW-IU-VcX"/>
                                     <constraint firstItem="S9G-sc-Ajw" firstAttribute="centerX" secondItem="wGf-Bs-ouz" secondAttribute="centerX" id="dHP-oL-V0E"/>
                                     <constraint firstItem="tSd-uO-kQb" firstAttribute="width" secondItem="wGf-Bs-ouz" secondAttribute="width" multiplier="1/2" id="fSV-y4-Ah7"/>
-                                    <constraint firstItem="Xg4-SV-G0U" firstAttribute="centerX" secondItem="wGf-Bs-ouz" secondAttribute="centerX" id="sbl-WL-caB"/>
                                     <constraint firstItem="tSd-uO-kQb" firstAttribute="height" secondItem="wGf-Bs-ouz" secondAttribute="height" multiplier="1/2" id="t0q-Pm-Dxj"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/03/2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg4-SV-G0U">
+                                <rect key="frame" x="146.5" y="307" width="82" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Xg4-SV-G0U" firstAttribute="top" secondItem="wGf-Bs-ouz" secondAttribute="bottom" constant="15" id="7vD-cI-Tkt"/>
+                            <constraint firstItem="Xg4-SV-G0U" firstAttribute="centerX" secondItem="wGf-Bs-ouz" secondAttribute="centerX" id="Hlq-jh-ycf"/>
                             <constraint firstItem="wGf-Bs-ouz" firstAttribute="centerX" secondItem="Psa-Gp-IcD" secondAttribute="centerX" id="PGK-LA-bCf"/>
                             <constraint firstItem="wGf-Bs-ouz" firstAttribute="centerY" secondItem="Psa-Gp-IcD" secondAttribute="centerY" id="R6O-hF-Out"/>
                             <constraint firstItem="wGf-Bs-ouz" firstAttribute="height" secondItem="Psa-Gp-IcD" secondAttribute="height" multiplier="3/4" id="TIk-ER-en3"/>
                             <constraint firstItem="wGf-Bs-ouz" firstAttribute="width" secondItem="Psa-Gp-IcD" secondAttribute="width" multiplier="3/4" id="vpi-gu-9xI"/>
                         </constraints>
                     </view>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UMc-N7-gdU">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5tf-dP-AeN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tableView>
@@ -78,20 +78,20 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="UMc-N7-gdU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0SZ-5U-x6A"/>
-                <constraint firstAttribute="bottom" secondItem="UMc-N7-gdU" secondAttribute="bottom" id="4Ds-gJ-nkq"/>
-                <constraint firstItem="UMc-N7-gdU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Oid-w5-495"/>
+                <constraint firstAttribute="bottom" secondItem="5tf-dP-AeN" secondAttribute="bottom" id="2ON-p8-jk0"/>
+                <constraint firstItem="Psa-Gp-IcD" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="1/2" id="89o-DG-tYp"/>
                 <constraint firstItem="Psa-Gp-IcD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Wbe-hG-XbW"/>
-                <constraint firstItem="Psa-Gp-IcD" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="1/2" id="caX-32-KtU"/>
+                <constraint firstAttribute="trailing" secondItem="5tf-dP-AeN" secondAttribute="trailing" id="ZMR-15-k98"/>
                 <constraint firstItem="Psa-Gp-IcD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kl9-s9-p5p"/>
-                <constraint firstAttribute="trailing" secondItem="UMc-N7-gdU" secondAttribute="trailing" id="liA-3J-msR"/>
                 <constraint firstAttribute="trailing" secondItem="Psa-Gp-IcD" secondAttribute="trailing" id="lrD-EK-sTv"/>
+                <constraint firstItem="5tf-dP-AeN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qVI-1R-0qD"/>
+                <constraint firstItem="5tf-dP-AeN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vpq-uU-1ax"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="dateLabel" destination="Xg4-SV-G0U" id="hPj-sb-kAH"/>
                 <outlet property="descriptionLabel" destination="RC1-NX-Dah" id="2ng-Z5-k3R"/>
-                <outlet property="forecastWeatherTableView" destination="UMc-N7-gdU" id="Spy-x1-1iI"/>
+                <outlet property="forecastTableView" destination="5tf-dP-AeN" id="Kug-ri-yAF"/>
                 <outlet property="imageWeather" destination="tSd-uO-kQb" id="oKy-tA-aZd"/>
                 <outlet property="temperatureLabel" destination="S9G-sc-Ajw" id="xmC-Cg-aTy"/>
                 <outlet property="viewWeather" destination="Psa-Gp-IcD" id="Ffi-Ec-V56"/>

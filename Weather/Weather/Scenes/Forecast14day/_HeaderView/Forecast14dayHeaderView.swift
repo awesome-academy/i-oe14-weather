@@ -26,7 +26,7 @@ final class Forecast14dayHeaderView: UIView, NibLoadable {
     
     func setContentView(with data: ForecastWeather) {
         let weather = Weather(data.weather.icon)
-        let temperature = "\(data.minTemperature.celsius) / \(data.maxTemperature.celsius)"
+        let temperature = "\(data.minTemp.celsius) / \(data.maxTemp.celsius)"
         weatherImageView.image = weather.largeImage
         descriptionLabel.text = data.weather.description
         dateLabel.text = data.datetime.fullDayOfWeek(data.timezone) + "\n\(temperature)"

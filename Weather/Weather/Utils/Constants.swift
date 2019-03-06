@@ -34,4 +34,5 @@ struct Constants {
     static let windspeed = "Windspeed"
     static let sunset = "Sunset"
     static let sunrise = "Sunrise"
+    static let retry = "Retry"
 }

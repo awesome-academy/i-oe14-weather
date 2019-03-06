@@ -16,6 +16,7 @@ final class SearchLocationViewController: BaseTableViewController {
     private let searchRepo = SearchRepository()
     private let weatherRepo = ListCityRepository()
     private var predictions = [Prediction]()
+    private var location: Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,7 @@ final class SearchLocationViewController: BaseTableViewController {
     
     override func configureTableView() {
         super.configureTableView()
-        baseTableView.do {
-            $0.register(cellType: SearchLocationCell.self)
-        }
+        baseTableView.register(cellType: SearchLocationCell.self)
     }
     
     @IBAction func handleCancelButton(_ sender: UIButton) {
@@ -60,39 +59,50 @@ extension SearchLocationViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         startLoading()
+        let group = DispatchGroup().then { $0.enter() }
         
         let placeId = predictions[indexPath.row].placeId
         searchRepo.searchCoordinate(of: placeId) { [weak self] result in
             guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    guard let data = data else { return }
-                    let location = Location(placeId: placeId, coordinate: data.coordinate)
-                    self.postNotification(with: location)
-                case .failed(let error):
-                    self.showErrorMessage(message: error?.errorMessage)
-                    self.stopLoading()
-                }
+            switch result {
+            case .success(let data):
+                guard let data = data else { return }
+                self.location = Location(placeId, coordinate: data.coordinate)
+            case .failed(let error):
+                self.showErrorMessage(message: error?.errorMessage)
+                self.stopLoading()
+            }
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            if let location = self.location {
+                self.database.insert(location)
+                self.fetchData(with: location)
+            } else {
+                self.location = nil
+                self.stopLoading()
+                self.dismissViewController()
             }
         }
     }
     
-    func postNotification(with location: Location) {
-        if database.contains(location) {
-            stopLoading()
-            dismissViewController()
-        } else {
-            weatherRepo.fetchData(location: location) { [weak self] weatherData in
-                guard let self = self else { return }
-                
+    func fetchData(with location: Location) {
+        weatherRepo.fetchData(location: location) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                guard let data = data else { return }
                 DispatchQueue.main.async {
-                    self.notificationCenter.post(name: .weatherDataDidChange,
-                                                 object: weatherData)
+                    self.location = nil
                     self.stopLoading()
                     self.dismissViewController()
+                    self.notificationCenter.post(name: .weatherDataDidChange,
+                                                 object: data)
                 }
+            case .failed:
+                self.location = nil
+                self.stopLoading()
             }
         }
     }
