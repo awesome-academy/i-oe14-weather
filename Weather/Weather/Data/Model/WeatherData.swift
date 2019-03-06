@@ -23,8 +23,21 @@ final class WeatherData: NSObject {
                 conditions.visibility.km,
                 conditions.windspeed.ms,
                 conditions.pressure.hPa,
-                conditions.sunset.am(conditions.timezone),
-                conditions.sunrise.pm(conditions.timezone)]
+                conditions.sunset.pm(conditions.timezone),
+                conditions.sunrise.am(conditions.timezone)]
+    }
+    
+    var condition14days: [[String]] {
+        var conditions = [[String]]()
+        forecastdayWeather.forEach {
+            let condition = [Double($0.humidity).percent,
+                             $0.uv.formated,
+                             $0.visibility.km,
+                             $0.windspeed.ms,
+                             $0.pressure.hPa]
+            conditions.append(condition)
+        }
+        return conditions
     }
     
     var temperature: (min: Double, max: Double) {

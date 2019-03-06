@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jnr-oW-xiL">
-                        <rect key="frame" x="5" y="40" width="395" height="93.5"/>
+                        <rect key="frame" x="5" y="40" width="395" height="103.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Eev-XX-YCU">
                             <size key="itemSize" width="50" height="50"/>
@@ -58,7 +58,7 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="jnr-oW-xiL" secondAttribute="bottom" constant="30" id="3eS-x9-F2n"/>
+                    <constraint firstAttribute="bottom" secondItem="jnr-oW-xiL" secondAttribute="bottom" constant="20" id="3eS-x9-F2n"/>
                     <constraint firstItem="q92-Cd-e3c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Du8-YR-HpQ"/>
                     <constraint firstItem="jnr-oW-xiL" firstAttribute="top" secondItem="q92-Cd-e3c" secondAttribute="bottom" id="QYM-6q-snb"/>
                     <constraint firstItem="jnr-oW-xiL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="fvj-Bx-3G2"/>

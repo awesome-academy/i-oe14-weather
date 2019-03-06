@@ -22,6 +22,7 @@ final class PagingCityWeatherViewController: BaseViewController {
 
     override func addObserver() {
         notificationCenter.addObserver(self, selector: #selector(weatherDataDidChange), name: .weatherDataDidChange, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(presentViewController), name: .presentViewController, object: nil)
     }
     
     @IBAction private func handleBackButton(_ sender: UIButton) {
@@ -64,6 +65,17 @@ private extension PagingCityWeatherViewController {
         if let data = notification.object as? WeatherData {
             weatherData.append(data)
             weatherCollectionView.reloadData()
+        }
+    }
+    
+    @objc func presentViewController(_ notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            if let self = self,
+                let weatherData = notification.object as? WeatherData {
+                let viewController = Forecast14dayViewController.instantiate()
+                viewController.weatherData = weatherData
+                self.present(viewController, animated: true, completion: nil)
+            }
         }
     }
 }

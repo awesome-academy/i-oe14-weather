@@ -53,6 +53,9 @@ extension PagingCityWeatherCell: UITableViewDataSource, UITableViewDelegate {
             cell.setContentCell(data: weatherData, categories: .forecastday)
             return cell
         case 3:
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: LoadMoreViewCell.self)
+            return cell
+        case 4:
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ForecastConditionWeatherCell.self)
             cell.setContentCell(data: weatherData, categories: .uv)
             return cell
@@ -72,6 +75,8 @@ extension PagingCityWeatherCell: UITableViewDataSource, UITableViewDelegate {
         case 2:
             return Constant.forecastdayHeightRow
         case 3:
+            return Constant.loadmoreHeightRow
+        case 4:
             return Constant.humidityHeightRow
         default:
             return Constant.humidityHeightRow
@@ -84,6 +89,12 @@ extension PagingCityWeatherCell: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return Constant.minHeightHeader
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+            NotificationCenter.default.post(name: .presentViewController, object: weatherData)
+        }
     }
 }
 
@@ -98,10 +109,11 @@ extension PagingCityWeatherCell: UIScrollViewDelegate {
 // MARK: - PagingCityWeatherCell
 private extension PagingCityWeatherCell {
     struct Constant {
-        static let maxRow = 5
+        static let maxRow = 6
         static let maxAlpha: CGFloat = 1
         static let minHeightHeader: CGFloat = 0
         static let dailyHeightRow: CGFloat = 200
+        static let loadmoreHeightRow: CGFloat = 30
         static let humidityHeightRow: CGFloat = 220
         static let forecastdayHeightRow: CGFloat = 360
         static let tableHeaderView = UIView(width: 0, height: Screen.height / 2)
@@ -112,6 +124,7 @@ private extension PagingCityWeatherCell {
             $0.delegate = self
             $0.dataSource = self
             $0.tableHeaderView = Constant.tableHeaderView
+            $0.register(cellType: LoadMoreViewCell.self)
             $0.register(cellType: ForecastdayWeatherCell.self)
             $0.register(cellType: ForecastConditionWeatherCell.self)
         }

@@ -51,6 +51,7 @@ class BaseTableViewController: BaseViewController {
 
 // MARK: - UITableViewDataSource + UITableViewDelegate
 extension BaseTableViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }

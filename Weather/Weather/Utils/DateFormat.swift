@@ -16,4 +16,5 @@ enum DateFormat: String {
     case HH = "HH"
     case EEE = "EEE"
     case yyyyMMdd = "yyyy-MM-dd"
+    case EEEddMMyyyy = "EEE, dd/MM/yyyy"
 }
