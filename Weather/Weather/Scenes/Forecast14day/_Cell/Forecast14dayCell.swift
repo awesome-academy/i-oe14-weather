@@ -17,9 +17,7 @@ final class Forecast14dayCell: BaseTableViewCell {
     
     override func configureCollectionView() {
         super.configureCollectionView()
-        baseCollectionView.do {
-            $0.register(cellType: DailyWeatherCell.self)
-        }
+        baseCollectionView.register(cellType: DailyWeatherCell.self)
     }
     
     func setContentCell(with data: [String]) {

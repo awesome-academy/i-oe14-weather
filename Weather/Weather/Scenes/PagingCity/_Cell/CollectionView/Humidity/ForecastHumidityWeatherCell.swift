@@ -18,9 +18,7 @@ final class ForecastHumidityWeatherCell: BaseCollectionViewCell {
     }
     
     override func configureSubview() {
-        chartView.do {
-            $0.setCornerRadius(Constant.radius, border: Constant.border)
-        }
+        chartView.setCornerRadius(Constant.radius, border: Constant.border)
     }
     
     func setContentCell(with data: ForecastWeather) {

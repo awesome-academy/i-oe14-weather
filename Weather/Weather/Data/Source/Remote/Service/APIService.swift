@@ -20,7 +20,7 @@ class APIService {
         return Alamofire.SessionManager(configuration: config)
     }()
     
-    func request<T: Mappable>(input: BaseRequest, completion: @escaping(_ object: T?, _ error: BaseError?) -> Void ) {
+    func request<T: Mappable>(input: BaseRequest, completion: @escaping(_ object: T?, _ error: BaseError?) -> Void) {
         
         print("\n------------REQUEST INPUT")
         print("link: %@", input.url)

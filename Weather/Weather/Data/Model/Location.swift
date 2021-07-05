@@ -13,7 +13,7 @@ struct Location: Then {
     var longitude: Double = 0
     var placeId = ""
     
-    init(placeId: String, coordinate: Coordinate) {
+    init(_ placeId: String, coordinate: Coordinate) {
         self.placeId = placeId
         self.latitude = coordinate.lat
         self.longitude = coordinate.lng

@@ -22,8 +22,8 @@ final class ForecastWeather: Mappable {
     var datetime = ""
     var timezone = ""
     var weather = CurrentWeather()
-    var maxTemperature: Double = 0
-    var minTemperature: Double = 0
+    var maxTemp: Double = 0
+    var minTemp: Double = 0
     
     init() { }
     
@@ -43,7 +43,9 @@ final class ForecastWeather: Mappable {
         weather <- map["weather"]
         datetime <- map["datetime"]
         timezone <- map["timezone"]
-        maxTemperature <- map["max_temp"]
-        minTemperature <- map["min_temp"]
+        maxTemp <- map["max_temp"]
+        minTemp <- map["min_temp"]
+        maxTemp = maxTemp.rounded()
+        minTemp = minTemp.rounded()
     }
 }

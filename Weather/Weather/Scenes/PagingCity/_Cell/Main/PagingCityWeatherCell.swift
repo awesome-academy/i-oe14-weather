@@ -15,7 +15,7 @@ final class PagingCityWeatherCell: UICollectionViewCell, NibReusable {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var imageWeather: UIImageView!
-    @IBOutlet private weak var forecastWeatherTableView: UITableView!
+    @IBOutlet private weak var forecastTableView: UITableView!
     
     private var weatherData = WeatherData()
     
@@ -29,6 +29,7 @@ final class PagingCityWeatherCell: UICollectionViewCell, NibReusable {
         if let weatherData = weatherData.dailyWeather.first {
             configureView(withData: weatherData)
         }
+        forecastTableView.reloadContent()
     }
 }
 
@@ -120,7 +121,7 @@ private extension PagingCityWeatherCell {
     }
     
     func configureTableView() {
-        forecastWeatherTableView.do {
+        forecastTableView.do {
             $0.delegate = self
             $0.dataSource = self
             $0.tableHeaderView = Constant.tableHeaderView

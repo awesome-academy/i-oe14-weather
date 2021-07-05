@@ -158,8 +158,8 @@
                         <viewLayoutGuide key="safeArea" id="NTs-hd-V0v"/>
                     </view>
                     <connections>
+                        <outlet property="baseCollectionView" destination="wQ6-An-TtV" id="xUj-WD-0EN"/>
                         <outlet property="pageControl" destination="zR1-3I-S1Q" id="wsc-xJ-lLB"/>
-                        <outlet property="weatherCollectionView" destination="wQ6-An-TtV" id="bTO-aV-gg0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgJ-d7-rEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,7 +410,7 @@
                         <viewLayoutGuide key="safeArea" id="C2z-yt-4cB"/>
                     </view>
                     <connections>
-                        <outlet property="listCityCollectionView" destination="RgE-2d-fYt" id="zDY-ic-Ze0"/>
+                        <outlet property="baseCollectionView" destination="RgE-2d-fYt" id="2aH-Ua-IAp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ApH-pK-qj5" userLabel="First Responder" sceneMemberID="firstResponder"/>

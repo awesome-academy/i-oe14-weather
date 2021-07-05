@@ -29,10 +29,10 @@ class BaseTableViewCell: UITableViewCell, NibReusable {
     }
     
     func setContentCell(data: WeatherData, categories: ForecastCategory) {
-        descriptionLabel.text = categories.description
-        currentCategories = categories
-        weatherData = data
         baseCollectionView.reloadData()
+        weatherData = data
+        currentCategories = categories
+        descriptionLabel.text = categories.description
     }
 }
 

@@ -15,6 +15,7 @@ final class Database: NSObject {
     private struct Constant {
         static let weather = "Weather"
         static let entity = "Location"
+        static let placeId = "placeId"
     }
     
     override init() {
@@ -41,8 +42,7 @@ final class Database: NSObject {
         }
     }
     
-    @discardableResult
-    func contains(_ location: Location) -> Bool {
+    func insert(_ location: Location) {
         fetch(LocationCoreData.self).forEach {
             // update location with current place id
             if $0.placeId == location.placeId {
@@ -61,11 +61,8 @@ final class Database: NSObject {
                 $0.latitude = location.latitude
                 $0.longitude = location.longitude
             }
-            save()
-            return false
         }
         save()
-        return true
     }
     
     func delete(data location: Location) {
@@ -93,11 +90,22 @@ final class Database: NSObject {
         return [T]()
     }
     
-    func getLocations() -> [Location] {
+    func getLocations(isNeedGps: Bool) -> [Location] {
         var locations = [Location]()
+        
+        if isNeedGps {
+            fetch(LocationCoreData.self).forEach {
+                let coordinate = Coordinate(lat: $0.latitude, lng: $0.longitude)
+                locations.append(Location($0.placeId, coordinate: coordinate))
+            }
+            return locations
+        }
+        
         fetch(LocationCoreData.self).forEach {
-            let coordinate = Coordinate(lat: $0.latitude, lng: $0.longitude)
-            locations.append(Location(placeId: $0.placeId, coordinate: coordinate))
+            if $0.placeId != Constant.placeId {
+                let coordinate = Coordinate(lat: $0.latitude, lng: $0.longitude)
+                locations.append(Location($0.placeId, coordinate: coordinate))
+            }
         }
         return locations
     }

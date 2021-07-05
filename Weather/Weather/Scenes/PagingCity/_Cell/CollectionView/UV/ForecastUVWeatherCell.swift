@@ -18,15 +18,11 @@ final class ForecastUVWeatherCell: BaseCollectionViewCell {
     }
     
     override func configureSubview() {
-        chartView.do {
-            $0.scaleCornerRadius(0.2)
-        }
+        chartView.scaleCornerRadius(0.2)
     }
     
     func setContentCell(with data: ForecastWeather) {
-        dateLabel.do {
-            $0.text = data.datetime.hh(data.timezone)
-        }
+        dateLabel.text = data.datetime.hh(data.timezone)
         
         chartView.do {
             if data.uv >= 0 && data.uv < 2.5 {

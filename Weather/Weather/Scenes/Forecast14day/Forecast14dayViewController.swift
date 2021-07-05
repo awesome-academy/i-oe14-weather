@@ -18,9 +18,7 @@ final class Forecast14dayViewController: BaseTableViewController {
     
     override func configureTableView() {
         super.configureTableView()
-        baseTableView.do {
-            $0.register(cellType: Forecast14dayCell.self)
-        }
+        baseTableView.register(cellType: Forecast14dayCell.self)
     }
     
     @IBAction private func handleDoneButton(_ sender: UIButton) {

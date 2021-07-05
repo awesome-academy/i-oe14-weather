@@ -39,7 +39,7 @@ enum CityBackgrounds {
             self = .sleet
         case 621...623:
             self = .snowShower
-        case 700...751:
+        case 700...751, 804:
             self = .mist
         case 800...803:
             self = .clearSky

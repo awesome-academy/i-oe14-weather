@@ -54,7 +54,6 @@
                                         <rect key="frame" x="0.0" y="170" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="IA4-Qd-c46"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="q94-LV-u3Y"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,22 +63,22 @@
                                         <rect key="frame" x="19" y="33" width="12.5" height="129"/>
                                         <color key="backgroundColor" red="0.2274509804" green="0.87058823529999996" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="J3L-IZ-75Y"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="20" id="cqh-bD-8i5"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="SKP-vS-5Yx" firstAttribute="top" secondItem="8s7-l3-wrq" secondAttribute="top" id="10m-JH-bmR"/>
-                                    <constraint firstItem="Fc4-Fr-sM8" firstAttribute="top" secondItem="Sc6-kp-YDd" secondAttribute="bottom" priority="750" constant="8" id="Lke-sM-jxp"/>
+                                    <constraint firstItem="SKP-vS-5Yx" firstAttribute="top" secondItem="8s7-l3-wrq" secondAttribute="top" priority="500" id="10m-JH-bmR"/>
+                                    <constraint firstItem="Fc4-Fr-sM8" firstAttribute="top" secondItem="Sc6-kp-YDd" secondAttribute="bottom" constant="8" id="Lke-sM-jxp"/>
                                     <constraint firstItem="Sc6-kp-YDd" firstAttribute="centerX" secondItem="8s7-l3-wrq" secondAttribute="centerX" id="XtG-MI-RYN"/>
                                     <constraint firstItem="SKP-vS-5Yx" firstAttribute="centerX" secondItem="8s7-l3-wrq" secondAttribute="centerX" id="aEf-q6-3dU"/>
-                                    <constraint firstAttribute="bottom" secondItem="Fc4-Fr-sM8" secondAttribute="bottom" id="fVw-Ru-wcY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fc4-Fr-sM8" secondAttribute="bottom" priority="500" id="fVw-Ru-wcY"/>
                                     <constraint firstItem="SKP-vS-5Yx" firstAttribute="width" secondItem="8s7-l3-wrq" secondAttribute="width" id="gKj-zP-5qa"/>
                                     <constraint firstItem="Sc6-kp-YDd" firstAttribute="width" secondItem="8s7-l3-wrq" secondAttribute="width" multiplier="1/4" id="hD8-l0-wg5"/>
                                     <constraint firstItem="Fc4-Fr-sM8" firstAttribute="width" secondItem="8s7-l3-wrq" secondAttribute="width" id="hnf-rr-yCR"/>
                                     <constraint firstItem="Fc4-Fr-sM8" firstAttribute="centerX" secondItem="8s7-l3-wrq" secondAttribute="centerX" id="mRl-H2-fIF"/>
-                                    <constraint firstItem="Sc6-kp-YDd" firstAttribute="top" secondItem="SKP-vS-5Yx" secondAttribute="bottom" priority="750" constant="8" id="tAz-gs-qTa"/>
+                                    <constraint firstItem="Sc6-kp-YDd" firstAttribute="top" secondItem="SKP-vS-5Yx" secondAttribute="bottom" constant="8" id="tAz-gs-qTa"/>
                                 </constraints>
                             </view>
                         </subviews>
